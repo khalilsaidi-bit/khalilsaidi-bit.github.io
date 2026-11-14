@@ -223,6 +223,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .bv{grid-area:v;text-align:right;font-weight:600}.bf{grid-area:f;text-align:right;color:var(--amber)}
 .ch-note{font-size:12px;color:var(--mute);margin:8px 0 0}
 @media (prefers-reduced-motion:reduce){.bt i{transform:none}}
+
+.proj.wide{grid-template-columns:1fr}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin:20px 0 6px}
+@media(max-width:780px){.cols2{grid-template-columns:1fr}}
+.wide-shot{margin:6px 0 0}
 </style>
 </head>
 <body>
@@ -270,7 +275,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <g class="node" style="--i:1" transform="translate(110,94)"><rect width="390" height="60" rx="12"/>
         <path class="ic" d="M18 41h10l6-20 8 20h16M44 18v6"/><text class="t1" x="74" y="26">Control systems</text><text class="t2" x="74" y="45">droop and dq control, MATLAB / Simulink</text><circle class="lamp" style="--i:1" cx="368" cy="30" r="5"/></g>
       <g class="node" style="--i:2" transform="translate(110,174)"><rect width="390" height="60" rx="12"/>
-        <path class="ic" d="M18 17h38v26H18zM28 17v26M18 25h10M18 34h10M34 24h16v8H34z"/><text class="t1" x="74" y="26">Industrial automation</text><text class="t2" x="74" y="45">PLC programming in Siemens TIA Portal</text><circle class="lamp" style="--i:2" cx="368" cy="30" r="5"/></g>
+        <path class="ic" d="M18 17h38v26H18zM28 17v26M18 25h10M18 34h10M34 24h16v8H34z"/><text class="t1" x="74" y="26">Industrial automation</text><text class="t2" x="74" y="45">S7-1200, TIA Portal, PID, WinCC HMI</text><circle class="lamp" style="--i:2" cx="368" cy="30" r="5"/></g>
       <g class="node" style="--i:3" transform="translate(110,254)"><rect width="390" height="60" rx="12"/>
         <path class="ic" d="M26 19h22v22H26zM31 19v-5M37 19v-5M43 19v-5M31 41v5M37 41v5M43 41v5M26 25h-5M26 35h-5M48 25h5M48 35h5"/><text class="t1" x="74" y="26">Embedded systems</text><text class="t2" x="74" y="45">ESP32, Raspberry Pi, RFID, sensors and actuators</text><circle class="lamp" style="--i:3" cx="368" cy="30" r="5"/></g>
       <g class="node" style="--i:4" transform="translate(110,334)"><rect width="390" height="60" rx="12"/>
@@ -406,6 +411,28 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <text x="16" y="140" style="font:400 11.5px 'IBM Plex Sans',Arial;fill:#93A5BA">reference and inverter voltage</text></svg></div>
       </article>
 
+      <article class="proj wide rv">
+        <div>
+          <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span><span>2025 – 2026</span><span>with Wassim Bergaoui</span><span>supervised by Mr. Faycel Ben Hmida</span></div>
+          <h3>Automation and supervision of an HV transformer cooling system</h3>
+          <p>In a combined-cycle power plant, the ODAF cooling (oil directed, air forced) of a power transformer was still driven by hard-wired relay logic: thresholds were hard to change, nothing reached the control room, and operators had to work close to high voltage. We replaced it with a Siemens S7-1200 solution designed in TIA Portal.</p>
+          <div class="cols2">
+            <ul class="list">
+              <li>CPU 1214C with an RTD module for PT100 oil temperature probes, a pressure transmitter and an oil-level float.</li>
+              <li>A PID_Compact controller in the cyclic interrupt OB30 sets the speed of the oil pumps and fans continuously, through an SM 1232 analog output module and variable-speed drives, instead of on/off staging.</li>
+              <li>Modular program: a safety function for oil level, pressure and emergency stop, a scaling function (NORM_X, SCALE_X), automatic and manual modes.</li>
+            </ul>
+            <ul class="list">
+              <li>Operating modes modelled with GEMMA and Grafcets: safety, supervision, normal production and manual control.</li>
+              <li>KTP700 Basic touch panel built in WinCC: home, automatic and manual views, setpoint, oil temperature gauge, pump and fan status, fault reset.</li>
+              <li>Validated in simulation with S7-PLCSIM and the WinCC runtime simulator.</li>
+            </ul>
+          </div>
+          <div class="tags"><span class="tag">Siemens TIA Portal V18</span><span class="tag">S7-1200</span><span class="tag">PID_Compact</span><span class="tag">Ladder</span><span class="tag">GEMMA / Grafcet</span><span class="tag">WinCC</span><span class="tag">KTP700 HMI</span><span class="tag">PLCSIM</span><span class="tag">PT100</span></div>
+        </div>
+        <figure class="wide-shot"><div class="shot"><img src="assets/odaf-plc-hmi.jpg" alt="TIA Portal ladder networks for pump and fan commands next to the KTP700 HMI manual-mode screen running in the WinCC simulator" loading="lazy"></div><figcaption>Ladder logic for the pump and fan contactors, and the KTP700 manual-mode screen running in the WinCC simulator.</figcaption></figure>
+      </article>
+
       <article class="proj rv">
         <div>
           <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span></div>
@@ -445,18 +472,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         </div>
       </article>
 
-      <article class="proj rv">
-        <div>
-          <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span></div>
-          <h3>Industrial automation with Siemens TIA Portal</h3>
-          <p>PLC programming of an automated process in Siemens TIA Portal.</p>
-          <div class="tags"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC</span><span class="tag">Industrial automation</span></div>
-        </div>
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
-          <path class="k" d="M24 20v110M256 20v110"/>
-          <path class="k draw" d="M24 45h40M64 35v20M76 35v20M76 45h80M156 35v20M168 35v20M168 45h50"/><circle class="k" cx="232" cy="45" r="12"/><path class="k" d="M244 45h12"/>
-          <path class="k draw" d="M24 100h40M64 90v20M76 90v20M76 100h142"/><circle class="a" cx="232" cy="100" r="12"/><path class="k" d="M244 100h12"/></svg></div>
-      </article>
+      
     </div>
   </div>
 </section>
@@ -491,7 +507,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   <div class="wrap">
     <div class="head"><div><div class="kicker rv">Skills</div><h2 id="sk-title" class="rv" style="--i:1">What I work with</h2></div></div>
     <div class="skills">
-      <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 9h5M3 14h5M11 9h7v4h-7z"/></svg>Automation</h3><div class="tags"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC programming</span><span class="tag">Industrial automation</span></div></div>
+      <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 9h5M3 14h5M11 9h7v4h-7z"/></svg>Automation</h3><div class="tags"><span class="tag">Siemens TIA Portal</span><span class="tag">S7-1200</span><span class="tag">Ladder</span><span class="tag">PID_Compact</span><span class="tag">GEMMA / Grafcet</span><span class="tag">WinCC HMI</span><span class="tag">PLCSIM</span></div></div>
       <div class="sk rv" style="--i:1"><h3><svg viewBox="0 0 24 24"><path d="M3 17h4l3-10 4 10h7M14 5v3"/></svg>Control &amp; power</h3><div class="tags"><span class="tag">MATLAB / Simulink</span><span class="tag">Droop control</span><span class="tag">dq-frame control</span><span class="tag">PID</span><span class="tag">3-level SVPWM</span><span class="tag">Microgrids</span></div></div>
       <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/></svg>Embedded &amp; IoT</h3><div class="tags"><span class="tag">ESP32</span><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">RFID</span><span class="tag">MQTT</span><span class="tag">Docker</span><span class="tag">Firebase</span></div></div>
       <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><path d="M12 13v8M9 21h6M12 11l-1-8M13 12l7 4M11 12l-7 4"/><circle cx="12" cy="11" r="1.5"/></svg>Energy</h3><div class="tags"><span class="tag">Clean energy</span><span class="tag">Distributed generation</span><span class="tag">Wave and tidal energy</span><span class="tag">PCB design</span><span class="tag">Prototyping</span></div></div>
