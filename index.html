@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Khalil Saidi — Electrical &amp; Automation Engineering</title>
+<meta name="description" content="Portfolio of Khalil Saidi, final-year electrical and automation engineering student at École Polytechnique de Sousse: industrial automation, control systems, embedded and IoT systems, renewable energy.">
+<meta property="og:title" content="Khalil Saidi — Electrical & Automation Engineering">
+<meta property="og:description" content="Industrial automation, control systems, embedded and IoT systems, renewable energy. Looking for a final-year (PFE) internship.">
+<meta property="og:image" content="https://khalilsaidi-bit.github.io/assets/safeguard-demo-poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F6F9; --panel:#FFFFFF; --ink:#13212F; --ink-2:#4A5868; --line:#CDD6E0;
+  --blue:#0065A8; --blue-deep:#0A3D66; --amber:#F7901E; --amber-ink:#A85A00;
+  --maxw:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 "IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;line-height:1.08;margin:0}
+h2{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:-.01em}
+h3{font-size:24px;font-weight:600}
+p{margin:0 0 14px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.lede{color:var(--ink-2);max-width:62ch}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:rgba(244,246,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .me{font:600 19px "IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;color:var(--ink);text-decoration:none}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+nav ul a{color:var(--ink-2);text-decoration:none;font-size:15px;font-weight:500}
+nav ul a:hover{color:var(--blue)}
+@media(max-width:720px){nav ul{display:none}}
+
+/* hero */
+.hero{padding:76px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.portrait{width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--line);margin-bottom:26px}
+.hero h1{font-size:clamp(56px,8.4vw,104px);font-weight:700;letter-spacing:-.025em;line-height:.95}
+.hero .role{font:500 clamp(20px,2.3vw,25px)/1.35 "IBM Plex Sans",Arial,sans-serif;margin:22px 0 14px;max-width:30ch}
+.hero .lede{font-size:17.5px}
+.status{display:inline-flex;align-items:center;gap:10px;margin:8px 0 26px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:15px;font-weight:500}
+.led{width:10px;height:10px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(247,144,30,.18)}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:8px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid var(--blue)}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
+.btn.ghost{color:var(--blue);background:transparent}
+.btn.ghost:hover{background:rgba(0,101,168,.07)}
+
+/* signal chain diagram */
+.chain{width:100%;height:auto}
+.chain .wire{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s ease-out .2s forwards}
+.chain .node rect{fill:var(--panel);stroke:var(--ink);stroke-width:2}
+.chain .node text{font:600 15px "IBM Plex Sans",Arial,sans-serif;fill:var(--ink)}
+.chain .node .sub{font:400 12.5px "IBM Plex Sans",Arial,sans-serif;fill:var(--ink-2)}
+.chain .lamp{fill:var(--line);animation:lit .5s ease forwards}
+.chain .n1 .lamp{animation-delay:.5s}.chain .n2 .lamp{animation-delay:.9s}.chain .n3 .lamp{animation-delay:1.3s}.chain .n4 .lamp{animation-delay:1.7s}.chain .n5 .lamp{animation-delay:2.1s}
+.chain .icon{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes lit{to{fill:var(--amber)}}
+@media (prefers-reduced-motion:reduce){.chain .wire{animation:none;stroke-dashoffset:0}.chain .lamp{animation:none;fill:var(--amber)}html{scroll-behavior:auto}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:48px}}
+
+/* featured */
+.featured{background:var(--ink);color:#E8EEF5}
+.featured h2{color:#fff}
+.featured .lede{color:#AEBBCB}
+.ctx{font-size:15px;color:var(--ink-2);margin:10px 0 0}
+.featured .ctx{color:#AEBBCB}
+.fhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:34px}
+.video{border-radius:10px;overflow:hidden;border:1px solid #2A3B4E;background:#000}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0 8px;border-top:1px solid #2A3B4E;border-bottom:1px solid #2A3B4E}
+.facts div{padding:20px 22px;border-right:1px solid #2A3B4E}
+.facts div:last-child{border-right:0}
+.facts b{display:block;font:700 36px "IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;color:#fff}
+.facts span{font-size:15px;color:#AEBBCB}
+@media(max-width:700px){.facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid #2A3B4E}.facts div:last-child{border-bottom:0}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:44px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.featured h3{color:#fff;margin-bottom:12px}
+.featured li{margin-bottom:8px}
+.featured ul{padding-left:20px;margin:0}
+.arch{background:#0F1A26;border:1px solid #2A3B4E;border-radius:10px;padding:18px}
+.arch svg text,.proj svg text,.chain text{font-family:"IBM Plex Sans",Arial,sans-serif}
+.shots{display:grid;grid-template-columns:1fr 1.7fr;gap:22px;margin-top:44px;align-items:start}
+.shots figure{margin:0}
+.shots img{border-radius:8px;border:1px solid #2A3B4E;width:100%;height:auto}
+.shots .tall img{height:100%;max-height:640px;object-fit:cover}
+.shots .tall{grid-row:span 2}
+.shots figcaption{font-size:13.5px;color:#8D9CAE;margin-top:7px}
+@media(max-width:760px){.shots{grid-template-columns:1fr}.shots .tall{grid-row:auto}}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-size:13.5px;font-weight:500;padding:4px 11px;border-radius:6px;background:#E3EAF2;color:var(--blue-deep)}
+.featured .tag{background:#1D2E42;color:#CFE0F2}
+
+/* project list */
+.plist{margin-top:40px;border-top:1.5px solid var(--ink)}
+.proj{display:grid;grid-template-columns:220px 1fr 300px;gap:32px;padding:34px 0;border-bottom:1px solid var(--line)}
+.proj .kind{font-size:14.5px;color:var(--ink-2);font-weight:500}
+.proj .kind strong{display:block;color:var(--blue);font-weight:600;font-size:15px}
+.proj h3{margin-bottom:10px}
+.proj p{color:var(--ink-2)}
+.proj .vis{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:170px;display:flex;align-items:center;justify-content:center;padding:14px}
+.proj .vis svg{width:100%;height:auto}
+@media(max-width:980px){.proj{grid-template-columns:1fr;gap:14px}.proj .vis{max-width:420px}}
+
+/* experience timeline */
+.tl{list-style:none;padding:0;margin:40px 0 0;position:relative}
+.tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl li{position:relative;padding:0 0 34px 42px}
+.tl li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2.5px solid var(--blue)}
+.tl h3{font-size:22px}
+.tl .org{font-weight:600;color:var(--blue);margin:4px 0 8px}
+.tl p{color:var(--ink-2);max-width:70ch}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 40px;margin-top:40px}
+.skills h3{font-size:20px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.skills ul{list-style:none;padding:0;margin:0;color:var(--ink-2)}
+.skills li{padding:3px 0}
+@media(max-width:860px){.skills{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.skills{grid-template-columns:1fr}}
+
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+.edu div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
+.edu h3{font-size:21px;margin-bottom:6px}
+.edu p{color:var(--ink-2);margin:0}
+@media(max-width:760px){.edu{grid-template-columns:1fr}}
+
+.contact{background:var(--blue);color:#fff}
+.contact h2{color:#fff}
+.contact p{color:#D6E8F7;max-width:56ch}
+.contact .btn{border-color:#fff}
+.contact .btn.primary{background:#fff;color:var(--blue)}
+.contact .btn.ghost{color:#fff}
+.contact .btn.ghost:hover{background:rgba(255,255,255,.12)}
+footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="me" href="#top">Khalil Saidi</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <img class="portrait" src="assets/khalil-saidi.jpg" alt="Portrait of Khalil Saidi" width="132" height="132">
+      <h1>Khalil<br>Saidi</h1>
+      <p class="role">Electrical and automation engineering student at École Polytechnique de Sousse</p>
+      <p class="lede">I build systems that measure, decide and act: PLC programs, embedded and IoT nodes, and control of power converters for microgrids.</p>
+      <div class="status"><span class="led" aria-hidden="true"></span>Looking for a final-year (PFE) internship in 2027</div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">LinkedIn profile</a>
+      </div>
+    </div>
+
+    <svg class="chain" viewBox="0 0 520 470" role="img" aria-label="My fields, from power to the cloud: power and energy, control, automation, embedded systems, IoT and cloud">
+      <path class="wire" d="M70 40 V430 M70 40 H120 M70 120 H120 M70 200 H120 M70 280 H120 M70 360 H120"/>
+      <circle cx="70" cy="40" r="5" fill="#13212F"/><circle cx="70" cy="430" r="5" fill="#13212F"/>
+      <g class="node n1" transform="translate(120,12)">
+        <rect width="370" height="58" rx="8"/>
+        <path class="icon" d="M20 29c6-14 12-14 18 0s12 14 18 0"/>
+        <text x="74" y="25">Power &amp; energy</text><text class="sub" x="74" y="44">grid-forming converters, renewables, installations</text>
+        <circle class="lamp" cx="350" cy="29" r="6"/>
+      </g>
+      <g class="node n2" transform="translate(120,92)">
+        <rect width="370" height="58" rx="8"/>
+        <path class="icon" d="M18 40h10l6-20 8 20h16M44 18v6"/>
+        <text x="74" y="25">Control systems</text><text class="sub" x="74" y="44">PID, cascaded loops, MATLAB / Simulink</text>
+        <circle class="lamp" cx="350" cy="29" r="6"/>
+      </g>
+      <g class="node n3" transform="translate(120,172)">
+        <rect width="370" height="58" rx="8"/>
+        <path class="icon" d="M18 16h38v26H18zM28 16v26M18 24h10M18 33h10M34 23h16v8H34z"/>
+        <text x="74" y="25">Industrial automation</text><text class="sub" x="74" y="44">PLC programming in Siemens TIA Portal</text>
+        <circle class="lamp" cx="350" cy="29" r="6"/>
+      </g>
+      <g class="node n4" transform="translate(120,252)">
+        <rect width="370" height="58" rx="8"/>
+        <path class="icon" d="M26 18h22v22H26zM31 18v-5M37 18v-5M43 18v-5M31 40v5M37 40v5M43 40v5M26 24h-5M26 34h-5M48 24h5M48 34h5"/>
+        <text x="74" y="25">Embedded systems</text><text class="sub" x="74" y="44">ESP32, Raspberry Pi, sensors and actuators</text>
+        <circle class="lamp" cx="350" cy="29" r="6"/>
+      </g>
+      <g class="node n5" transform="translate(120,332)">
+        <rect width="370" height="58" rx="8"/>
+        <path class="icon" d="M24 40h26a8 8 0 0 0 0-16 11 11 0 0 0-21-3 9 9 0 0 0-5 19z"/>
+        <text x="74" y="25">IoT &amp; cloud</text><text class="sub" x="74" y="44">MQTT, Docker, Firebase, dashboards</text>
+        <circle class="lamp" cx="350" cy="29" r="6"/>
+      </g>
+      <text x="120" y="455" font-family="IBM Plex Sans" font-size="13" fill="#4A5868">From the power stage to the dashboard</text>
+    </svg>
+  </div>
+</header>
+
+<section class="featured" id="projects" aria-labelledby="sg-title">
+  <div class="wrap">
+    <div class="fhead">
+      <div>
+        <h2 id="sg-title">SafeGuard IIoT</h2>
+        <p class="ctx">Semester project, École Polytechnique de Sousse · with Wassim Bergaoui · supervised by Mr. Khaled Ben Khlifa</p>
+      </div>
+      <p class="lede" style="max-width:46ch;margin:0">Fire, heat and air-quality monitoring for a workshop, with an automatic ventilation flap and remote supervision in the cloud.</p>
+    </div>
+
+    <div class="video">
+      <video controls preload="none" poster="assets/safeguard-demo-poster.jpg" aria-label="SafeGuard IIoT demonstration video">
+        <source src="assets/safeguard-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="ctx" style="margin-top:10px">Demo on the real prototype (1 min 34, captions in French): start-up, telemetry, gas, temperature and fire alerts, remote control.</p>
+
+    <div class="facts">
+      <div><b>0.33 s</b><span>from a dashboard command to the node's confirmation</span></div>
+      <div><b>100 ms</b><span>flame scan period, confirmed over 3 readings</span></div>
+      <div><b>5 s</b><span>telemetry period over MQTT</span></div>
+    </div>
+
+    <div class="cols">
+      <div>
+        <h3>What it does</h3>
+        <ul>
+          <li>An ESP32 reads an IR flame sensor, a DHT11 (temperature, humidity) and an MQ-135 gas sensor.</li>
+          <li>A state machine on the node decides: fire, heat alert, air-quality alert or normal. It drives a local alarm and a servo-driven ventilation flap.</li>
+          <li>Safety never depends on the network: if Wi-Fi or the broker goes down, detection and alarm keep running.</li>
+          <li>Telemetry and alerts go over MQTT to a Mosquitto broker in Docker. A Python gateway stores them in Firebase Realtime Database.</li>
+          <li>A Streamlit dashboard shows live values, trends and the alert log, and sends commands back to the flap.</li>
+        </ul>
+        <h3 style="margin-top:28px">Security</h3>
+        <ul>
+          <li>No anonymous access to the broker, one account per client, hashed passwords.</li>
+          <li>Credentials kept out of the code; closed Firebase rules, HTTPS only.</li>
+        </ul>
+        <div class="stack">
+          <span class="tag">ESP32</span><span class="tag">C++ (Arduino)</span><span class="tag">MQTT</span><span class="tag">Mosquitto</span><span class="tag">Docker</span><span class="tag">MQTTX</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Streamlit</span>
+        </div>
+      </div>
+      <div>
+        <h3>Architecture</h3>
+        <div class="arch">
+          <svg viewBox="0 0 480 380" role="img" aria-label="Architecture: sensors to ESP32, MQTT broker in Docker, Python gateway, Firebase, dashboard; commands flow back the same way">
+            <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7FB3E0"/></marker>
+            <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F7901E"/></marker></defs>
+            <g font-size="13" fill="#E8EEF5">
+              <rect x="10" y="20" width="140" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="80" y="48" text-anchor="middle" font-weight="600">Sensors</text><text x="80" y="68" text-anchor="middle" fill="#AEBBCB" font-size="11.5">flame · DHT11 · MQ-135</text>
+              <rect x="10" y="150" width="140" height="80" rx="8" fill="#16273A" stroke="#F7901E"/><text x="80" y="180" text-anchor="middle" font-weight="600">ESP32 node</text><text x="80" y="199" text-anchor="middle" fill="#AEBBCB" font-size="11.5">state machine</text><text x="80" y="215" text-anchor="middle" fill="#AEBBCB" font-size="11.5">alarm · flap servo</text>
+              <rect x="320" y="20" width="150" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="48" text-anchor="middle" font-weight="600">Mosquitto broker</text><text x="395" y="68" text-anchor="middle" fill="#AEBBCB" font-size="11.5">Docker, port 1884</text>
+              <rect x="320" y="150" width="150" height="80" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="184" text-anchor="middle" font-weight="600">Python gateway</text><text x="395" y="204" text-anchor="middle" fill="#AEBBCB" font-size="11.5">MQTT ⇄ Firebase</text>
+              <rect x="320" y="290" width="150" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="320" text-anchor="middle" font-weight="600">Firebase RTDB</text><text x="395" y="340" text-anchor="middle" fill="#AEBBCB" font-size="11.5">live · history · alerts</text>
+              <rect x="10" y="290" width="140" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="80" y="320" text-anchor="middle" font-weight="600">Dashboard</text><text x="80" y="340" text-anchor="middle" fill="#AEBBCB" font-size="11.5">Streamlit</text>
+            </g>
+            <g fill="none" stroke-width="2">
+              <path d="M80 92 V146" stroke="#7FB3E0" marker-end="url(#ar)"/>
+              <path d="M150 175 C 230 175, 240 60, 316 60" stroke="#7FB3E0" marker-end="url(#ar)"/>
+              <path d="M386 92 V146" stroke="#7FB3E0" marker-end="url(#ar)"/>
+              <path d="M386 230 V286" stroke="#7FB3E0" marker-end="url(#ar)"/>
+              <path d="M320 326 H154" stroke="#7FB3E0" marker-end="url(#ar)"/>
+              <path d="M150 340 H316" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
+              <path d="M406 286 V234" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
+              <path d="M406 146 V96" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
+              <path d="M316 80 C 250 80, 240 205, 154 205" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
+            </g>
+            <g font-size="11.5"><text x="196" y="100" fill="#7FB3E0">telemetry, alerts</text><text x="190" y="250" fill="#F7901E">commands (QoS 1)</text></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="shots">
+      <figure class="tall"><img src="assets/safeguard-prototype.jpg" alt="SafeGuard prototype on two breadboards: ESP32, flame sensor, DHT11, MQ-135 and servo motor" loading="lazy"><figcaption>The prototype: ESP32, IR flame sensor, DHT11, MQ-135 and SG90 servo.</figcaption></figure>
+      <figure><img src="assets/safeguard-dashboard.jpg" alt="Streamlit dashboard showing live readings and flap controls" loading="lazy"><figcaption>Live dashboard with remote flap control.</figcaption></figure>
+      <figure><img src="assets/safeguard-alerts.jpg" alt="Alert log archived in Firebase, shown in the dashboard" loading="lazy"><figcaption>Alert log archived in Firebase: fire, return to normal, node offline.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="more-title">
+  <div class="wrap">
+    <h2 id="more-title">More projects</h2>
+    <div class="plist">
+
+      <article class="proj">
+        <div class="kind"><strong>Final-year internship project</strong>LEONI</div>
+        <div>
+          <h3>Smart cabinet with RFID access</h3>
+          <p>A cabinet that opens only for authorised badges. A Raspberry Pi reads the RFID tag, checks the user's rights and unlocks the door; every access is logged in a real-time database for traceability.</p>
+          <div class="stack"><span class="tag">Raspberry Pi</span><span class="tag">RFID</span><span class="tag">Python</span><span class="tag">Real-time database</span><span class="tag">Access control</span></div>
+        </div>
+        <div class="vis" aria-hidden="true">
+          <svg viewBox="0 0 280 150" fill="none" stroke="#13212F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+            <rect x="20" y="15" width="80" height="120" rx="6"/><path d="M60 15v120"/><circle cx="52" cy="75" r="3" fill="#13212F"/><circle cx="68" cy="75" r="3" fill="#13212F"/>
+            <rect x="120" y="55" width="40" height="40" rx="4" stroke="#0065A8"/><path d="M128 75a12 12 0 0 1 24 0M132 75a8 8 0 0 1 16 0" stroke="#0065A8"/>
+            <rect x="185" y="45" width="78" height="56" rx="6"/><path d="M196 58h56M196 70h40M196 82h48" stroke="#4A5868"/>
+            <path d="M100 75h20M160 75h25"/><circle cx="140" cy="118" r="5" fill="#F7901E" stroke="none"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="kind"><strong>Research master's</strong>LATIS laboratory, ENISO</div>
+        <div>
+          <h3>Grid-forming converter control for AC microgrids</h3>
+          <p>Modelling and control of a grid-forming inverter in MATLAB/Simulink: cascaded voltage and current loops, SVPWM modulation and protection functions (current limiter, virtual impedance, power limiter), tested under grid disturbances.</p>
+          <div class="stack"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Power electronics</span><span class="tag">Control systems</span><span class="tag">Microgrids</span></div>
+        </div>
+        <div class="vis" aria-hidden="true">
+          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
+            <path d="M14 75h252" stroke="#CDD6E0"/>
+            <path d="M14 75 C 40 20, 60 20, 84 75 S 128 130, 154 75 S 198 20, 222 75 S 250 120, 266 90" stroke="#0065A8"/>
+            <path d="M14 75 C 40 35, 60 35, 84 75 S 128 115, 154 75 S 198 35, 222 75 S 250 110, 266 92" stroke="#F7901E" stroke-dasharray="4 4"/>
+            <text x="16" y="140" font-family="IBM Plex Sans" font-size="11.5" fill="#4A5868" stroke="none">reference and inverter voltage</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="kind"><strong>Semester project</strong>École Polytechnique de Sousse</div>
+        <div>
+          <h3>Hybrid Marine Platform</h3>
+          <p>A floating prototype that harvests wave and tidal energy. A linear wave generator with a magnet levitating between repelling neodymium magnets, and a small tidal turbine under the float, each with its own circuit. We designed the PCB and the 3D-printed generator tube ourselves. Supervised by Mr. Hichem Kessraoui; an IEEE-format paper is in preparation.</p>
+          <div class="stack"><span class="tag">Renewable energy</span><span class="tag">PCB design</span><span class="tag">3D printing</span><span class="tag">Prototyping</span></div>
+        </div>
+        <div class="vis" aria-hidden="true">
+          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 62c20-12 40-12 60 0s40 12 60 0 40-12 60 0 40 12 60 0 40-12 30-6" stroke="#0065A8"/>
+            <rect x="122" y="38" width="36" height="22" rx="4" stroke="#13212F"/><path d="M140 38V12" stroke="#13212F"/><rect x="134" y="12" width="12" height="20" rx="3" stroke="#F7901E"/>
+            <path d="M140 60v62" stroke="#13212F"/><circle cx="140" cy="122" r="4" stroke="#13212F"/><path d="M140 122l-14-10M140 122l14-10M140 122v16" stroke="#13212F"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="kind"><strong>Semester project</strong>École Polytechnique de Sousse</div>
+        <div>
+          <h3>Industrial automation with Siemens TIA Portal</h3>
+          <p>PLC programming of an automated process in Siemens TIA Portal.</p>
+          <div class="stack"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC</span><span class="tag">Industrial automation</span></div>
+        </div>
+        <div class="vis" aria-hidden="true">
+          <svg viewBox="0 0 280 150" fill="none" stroke="#13212F" stroke-width="2" stroke-linecap="round">
+            <path d="M24 20v110M256 20v110"/>
+            <path d="M24 45h40M64 35v20M76 35v20M76 45h80M156 35v20M168 35v20M168 45h50"/><circle cx="232" cy="45" r="12"/><path d="M244 45h12"/>
+            <path d="M24 100h40M64 90v20M76 90v20M76 100h142"/><circle cx="232" cy="100" r="12" stroke="#F7901E"/><path d="M244 100h12"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="proj">
+        <div class="kind"><strong>Course project</strong>Dependability and maintenance</div>
+        <div>
+          <h3>Predictive maintenance of an electric pump</h3>
+          <p>Analysis of the public SKAB dataset (Skoltech pump testbed) to detect abnormal operation from vibration, current and pressure signals, published in our team's maintenance portfolio.</p>
+          <div class="stack"><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span><span class="tag">Python</span></div>
+        </div>
+        <div class="vis" aria-hidden="true">
+          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 100l20-6 20 4 20-8 20 6 20-5 20 3 20-7 20 5 14-40 12 52 20-4 20 3 20-6" stroke="#0065A8"/>
+            <circle cx="228" cy="52" r="14" stroke="#F7901E"/><path d="M14 132h252" stroke="#CDD6E0"/>
+          </svg>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience" aria-labelledby="exp-title" style="padding-top:20px">
+  <div class="wrap">
+    <h2 id="exp-title">Experience</h2>
+    <ol class="tl">
+      <li>
+        <h3>Control and power engineering, research master's</h3>
+        <p class="org">Laboratory of Advanced Technology and Intelligent Systems (LATIS), ENISO</p>
+        <p>Grid-forming inverter control for AC microgrids in MATLAB/Simulink: control loop design, protection strategies and validation under disturbances.</p>
+      </li>
+      <li>
+        <h3>Final-year internship, embedded systems</h3>
+        <p class="org">LEONI</p>
+        <p>Designed a smart cabinet with RFID access, driven by a Raspberry Pi and logging every access in a real-time database.</p>
+      </li>
+      <li>
+        <h3>Summer internship, residential electrical design</h3>
+        <p class="org">Ouerdani Electricity Corporation, Akouda</p>
+        <p>Took part in the electrical design of a villa: lighting and socket layouts, power balance, cable sizing and circuit-breaker panel layout.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills" aria-labelledby="sk-title" style="padding-top:20px">
+  <div class="wrap">
+    <h2 id="sk-title">Skills</h2>
+    <div class="skills">
+      <div><h3>Automation</h3><ul><li>Siemens TIA Portal</li><li>PLC programming</li><li>Industrial automation</li></ul></div>
+      <div><h3>Control &amp; power</h3><ul><li>MATLAB / Simulink</li><li>PID and cascaded control</li><li>Power electronics, SVPWM</li><li>Microgrids, grid-forming inverters</li></ul></div>
+      <div><h3>Embedded &amp; IoT</h3><ul><li>ESP32, Arduino, Raspberry Pi</li><li>C/C++, Python</li><li>MQTT, Docker, Firebase</li><li>RFID, sensors and actuators</li></ul></div>
+      <div><h3>Energy</h3><ul><li>Renewable energy (wave, tidal)</li><li>PCB design, prototyping</li></ul></div>
+      <div><h3>Electrical installations</h3><ul><li>Lighting and socket layouts</li><li>Power balance, cable sizing</li><li>Low-voltage distribution panels</li></ul></div>
+      <div><h3>Tools &amp; methods</h3><ul><li>VS Code, GitHub</li><li>LaTeX, technical writing</li><li>Predictive maintenance, data analysis</li></ul></div>
+    </div>
+
+    <h2 style="margin-top:80px">Education</h2>
+    <div class="edu">
+      <div><h3>École Polytechnique de Sousse</h3><p>Engineering degree in electrical and automation engineering, final year</p></div>
+      <div><h3>ISSAT Sousse</h3><p>Research master's in control and power engineering</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact" aria-labelledby="ct-title">
+  <div class="wrap">
+    <h2 id="ct-title">Let's talk about your PFE internship</h2>
+    <p style="margin:16px 0 26px">I'm looking for a final-year internship in industrial automation, control, embedded or IoT systems, or energy. I'd be glad to discuss your project.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:khalil.saidi@polytechnicien.tn">Email me</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 Khalil Saidi · Sousse, Tunisia</div></footer>
+</body>
+</html>
