@@ -228,6 +228,11 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin:20px 0 6px}
 @media(max-width:780px){.cols2{grid-template-columns:1fr}}
 .wide-shot{margin:6px 0 0}
+
+.pmh-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px}
+.pmh-gallery figure{margin:0}
+.pmh-gallery img,.pmh-gallery video{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+@media(max-width:780px){.pmh-gallery{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -433,17 +438,29 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <figure class="wide-shot"><div class="shot"><img src="assets/odaf-plc-hmi.jpg" alt="TIA Portal ladder networks for pump and fan commands next to the KTP700 HMI manual-mode screen running in the WinCC simulator" loading="lazy"></div><figcaption>Ladder logic for the pump and fan contactors, and the KTP700 manual-mode screen running in the WinCC simulator.</figcaption></figure>
       </article>
 
-      <article class="proj rv">
+      <article class="proj wide rv">
         <div>
-          <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span></div>
-          <h3>Hybrid Marine Platform</h3>
-          <p>A floating prototype that harvests wave and tidal energy: a linear wave generator whose magnet levitates between repelling neodymium magnets, and a small tidal turbine under the float, each with its own circuit. We designed the PCB and the 3D-printed generator tube ourselves. Supervised by Mr. Hichem Kessraoui; an IEEE-format paper is in preparation.</p>
-          <div class="tags"><span class="tag">Renewable energy</span><span class="tag">PCB design</span><span class="tag">3D printing</span><span class="tag">Prototyping</span></div>
+          <div class="meta"><b>Semester project and paper</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span><span>supervised by Mr. Hichem Kessraoui</span></div>
+          <h3>Hybrid Marine Platform: wave and tidal energy on one axis</h3>
+          <p>Offshore projects cut costs by sharing one foundation, mooring and cable between several converters. We applied that idea at student scale: a one-metre floating prototype carries a Faraday-lamp wave generator at the surface and a small tidal turbine near the seabed, each with its own circuit, on a single float, axis and ballast. The structure is made of PVC tubing and an extensible siphon that replaces a gimbal and a slide, and the purchased parts cost 111.5 TND. We are writing it up as an IEEE-format paper.</p>
+          <div class="cols2">
+            <ul class="list">
+              <li>We designed the generator: a 3D-printed PETG tube in four parts, a 1,500-turn copper coil and an NdFeB magnet levitating between repelling end magnets instead of springs.</li>
+              <li>We designed a 22 × 46 mm double-sided PCB that slides into the lamp head: Schottky bridge, 0.22 F supercapacitor, switch and LED.</li>
+            </ul>
+            <ul class="list">
+              <li>Electromagnetic model in Python (SciPy, elliptic integrals): coupling of 9.15 V/(m/s), magnetic-spring natural frequency of 5.5 Hz, so the generator mostly responds to shocks and chop rather than slow swell.</li>
+              <li>Tidal turbine model: 12 to 94 mW captured between 0.5 and 1 m/s. These are theoretical values; pool tests will calibrate the model.</li>
+            </ul>
+          </div>
+          <div class="tags"><span class="tag">Wave energy</span><span class="tag">Tidal energy</span><span class="tag">Faraday and Lenz laws</span><span class="tag">Python / SciPy</span><span class="tag">PCB design</span><span class="tag">3D printing (PETG)</span><span class="tag">Low-cost prototyping</span></div>
         </div>
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path class="c draw" d="M10 62c20-12 40-12 60 0s40 12 60 0 40-12 60 0 40 12 60 0 40-12 30-6"/>
-          <rect class="k" x="122" y="38" width="36" height="22" rx="4"/><path class="k" d="M140 38V12"/><rect class="a" x="134" y="12" width="12" height="20" rx="3"/>
-          <path class="k draw" d="M140 60v62"/><circle class="k" cx="140" cy="122" r="4"/><path class="k" d="M140 122l-14-10M140 122l14-10M140 122v16"/></svg></div>
+        <div class="pmh-gallery">
+          <figure><div class="shot"><img src="assets/pmh-prototype.jpg" alt="The Hybrid Marine Platform prototype standing on a beach: PVC float with two side bottles, vertical axis and ballast" loading="lazy"></div><figcaption>The prototype, about one metre tall.</figcaption></figure>
+          <figure><div class="shot"><img src="assets/pmh-faraday-lamp.jpg" alt="The Faraday lamp generator: transparent 3D-printed tube with copper coil, magnet and the PCB in its head" loading="lazy"></div><figcaption>Our Faraday lamp: coil, magnet and PCB.</figcaption></figure>
+          <figure><div class="shot"><img src="assets/pmh-tidal-turbine.jpg" alt="The tidal turbine: a 6 V DC motor used as a generator with a small propeller" loading="lazy"></div><figcaption>Tidal turbine: 6 V DC motor as generator.</figcaption></figure>
+          <figure><div class="shot"><video src="assets/pmh-led.mp4" poster="assets/pmh-led-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="The lamp's LED lights up on the float in the water"></video></div><figcaption>In the water: the lamp's LED lights up.</figcaption></figure>
+        </div>
       </article>
 
       
