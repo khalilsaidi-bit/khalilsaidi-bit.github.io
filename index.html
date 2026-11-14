@@ -209,6 +209,20 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   .rv{opacity:1;transform:none;filter:none}.mask>span{transform:none}
   .chain .node{opacity:1;translate:0 0}.chain .bus-live{stroke-dashoffset:0}.vis .draw{stroke-dashoffset:0}
 }
+
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.btn.small{padding:9px 15px;font-size:14px;border-radius:10px}
+.vis.chart{display:block;padding:18px 18px 12px;color:var(--text)}
+.ch-head{display:flex;justify-content:space-between;font-size:12px;color:var(--dim);margin-bottom:10px}
+.bar{display:grid;grid-template-columns:1fr 34px 30px;grid-template-areas:"n n n" "t v f";column-gap:8px;margin-bottom:9px;font-size:12.5px}
+.bn{grid-area:n;color:#C2CFDD;margin-bottom:3px}
+.bt{grid-area:t;height:8px;border-radius:4px;background:rgba(255,255,255,.05);overflow:hidden;align-self:center}
+.bt i{display:block;height:100%;width:var(--w);border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease) .3s}
+.in .bt i{transform:none}
+.bar.best .bn{color:#fff;font-weight:600}.bar.best .bt i{background:linear-gradient(90deg,var(--cyan),#9BE7FB);box-shadow:0 0 10px rgba(67,201,240,.6)}
+.bv{grid-area:v;text-align:right;font-weight:600}.bf{grid-area:f;text-align:right;color:var(--amber)}
+.ch-note{font-size:12px;color:var(--mute);margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){.bt i{transform:none}}
 </style>
 </head>
 <body>
@@ -405,6 +419,32 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <path class="k draw" d="M140 60v62"/><circle class="k" cx="140" cy="122" r="4"/><path class="k" d="M140 122l-14-10M140 122l14-10M140 122v16"/></svg></div>
       </article>
 
+      
+
+      <article class="proj rv">
+        <div>
+          <div class="meta"><b>Course project, dependability</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span><span>supervised by Prof. F. Ben Hmida</span></div>
+          <h3>Multi-sensor monitoring of an electric pump</h3>
+          <p>Can the detection index D of an FMEA be measured instead of guessed? Using the public SKAB dataset (34 runs on a real pump test bench, eight sensors at 1 Hz, seven failure modes), we built a fault detector in Python and judged it the way a maintenance team would: is the first alarm right, how fast does it come, how often does it ring for nothing.</p>
+          <ul class="list sub">
+            <li>Hotelling T² on short-term deviation features, with a Ledoit–Wolf covariance estimate; it beat Isolation Forest in six cases out of seven.</li>
+            <li>Vibration and hydraulic sensors together caught 82% of faults on the first alarm. Motor current, measured as 1 Hz RMS, caught almost nothing.</li>
+            <li>A model learned at one operating point failed at another (82% fell to 26%): the reference must be relearned after every setting change.</li>
+            <li>With four sensors, the criticality of every failure mode in the pump's FMEA dropped by 25 to 75%.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">Hotelling T²</span><span class="tag">Isolation Forest</span><span class="tag">FMEA</span><span class="tag">Condition-based maintenance</span></div>
+          <div class="links">
+            <a class="btn ghost small" href="https://khalilsaidi-bit.github.io/portfolio-maintenance/prj01/index.html" target="_blank" rel="noopener">Open the project page</a>
+            <a class="btn ghost small" href="https://github.com/waico/SKAB" target="_blank" rel="noopener">SKAB dataset</a>
+          </div>
+        </div>
+        <div class="vis chart" role="img" aria-label="Strict detection rate and false alarms per hour by sensor group: vibration 26% and 10.0, electrical 15% and 0.0, hydraulic 79% and 3.1, thermal 24% and 13.1, vibration plus electrical 41% and 6.9, all sensors 68% and 8.7, vibration plus hydraulic 82% and 7.5.">
+          <div class="ch-head"><span>Detected on first alarm</span><span>False alarms / h</span></div>
+          <div class="bar"><span class="bn">Vibration</span><span class="bt"><i style="--w:26%"></i></span><span class="bv">26%</span><span class="bf">10.0</span></div><div class="bar"><span class="bn">Electrical</span><span class="bt"><i style="--w:15%"></i></span><span class="bv">15%</span><span class="bf">0.0</span></div><div class="bar"><span class="bn">Hydraulic</span><span class="bt"><i style="--w:79%"></i></span><span class="bv">79%</span><span class="bf">3.1</span></div><div class="bar"><span class="bn">Thermal</span><span class="bt"><i style="--w:24%"></i></span><span class="bv">24%</span><span class="bf">13.1</span></div><div class="bar"><span class="bn">Vibration + electrical</span><span class="bt"><i style="--w:41%"></i></span><span class="bv">41%</span><span class="bf">6.9</span></div><div class="bar"><span class="bn">All sensors</span><span class="bt"><i style="--w:68%"></i></span><span class="bv">68%</span><span class="bf">8.7</span></div><div class="bar best"><span class="bn">Vibration + hydraulic</span><span class="bt"><i style="--w:82%"></i></span><span class="bv">82%</span><span class="bf">7.5</span></div>
+          <p class="ch-note">34 runs, Hotelling T² detector</p>
+        </div>
+      </article>
+
       <article class="proj rv">
         <div>
           <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span></div>
@@ -416,18 +456,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <path class="k" d="M24 20v110M256 20v110"/>
           <path class="k draw" d="M24 45h40M64 35v20M76 35v20M76 45h80M156 35v20M168 35v20M168 45h50"/><circle class="k" cx="232" cy="45" r="12"/><path class="k" d="M244 45h12"/>
           <path class="k draw" d="M24 100h40M64 90v20M76 90v20M76 100h142"/><circle class="a" cx="232" cy="100" r="12"/><path class="k" d="M244 100h12"/></svg></div>
-      </article>
-
-      <article class="proj rv">
-        <div>
-          <div class="meta"><b>Course project</b><span>Dependability and maintenance</span><span>with Wassim Bergaoui</span></div>
-          <h3>Predictive maintenance of an electric pump</h3>
-          <p>Analysis of the public SKAB dataset (Skoltech pump testbed) to detect abnormal operation from vibration, current and pressure signals, published in our team's maintenance portfolio.</p>
-          <div class="tags"><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span><span class="tag">Python</span></div>
-        </div>
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path class="c draw" d="M14 100l20-6 20 4 20-8 20 6 20-5 20 3 20-7 20 5 14-40 12 52 20-4 20 3 20-6"/>
-          <circle class="a" cx="228" cy="52" r="14"/><path class="g" d="M14 132h252"/></svg></div>
       </article>
     </div>
   </div>
