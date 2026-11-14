@@ -4,443 +4,582 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Khalil Saidi — Electrical &amp; Automation Engineering</title>
-<meta name="description" content="Portfolio of Khalil Saidi, final-year electrical and automation engineering student at École Polytechnique de Sousse: industrial automation, control systems, embedded and IoT systems, renewable energy.">
+<meta name="description" content="Portfolio of Khalil Saidi, electrical and automation engineering student at École Polytechnique de Sousse: industrial automation, grid-forming control, embedded and IoT systems.">
 <meta property="og:title" content="Khalil Saidi — Electrical & Automation Engineering">
-<meta property="og:description" content="Industrial automation, control systems, embedded and IoT systems, renewable energy. Looking for a final-year (PFE) internship.">
+<meta property="og:description" content="Industrial automation, grid-forming control, embedded and IoT systems. Looking for a final-year (PFE) internship.">
 <meta property="og:image" content="https://khalilsaidi-bit.github.io/assets/safeguard-demo-poster.jpg">
+<meta name="theme-color" content="#070E18">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F4F6F9; --panel:#FFFFFF; --ink:#13212F; --ink-2:#4A5868; --line:#CDD6E0;
-  --blue:#0065A8; --blue-deep:#0A3D66; --amber:#F7901E; --amber-ink:#A85A00;
-  --maxw:1120px;
+  --bg:#070E18; --bg-2:#0B1524; --bg-3:#101E31; --panel:rgba(16,30,49,.72);
+  --line:#1E3149; --line-2:#2A4362;
+  --text:#E7EEF6; --dim:#93A5BA; --mute:#5F738B;
+  --cyan:#43C9F0; --blue:#2584D8; --amber:#FFAD4D; --green:#3DDC97; --red:#FF5D5D;
+  --maxw:1180px; --ease:cubic-bezier(.2,.7,.1,1);
+  --display:"Archivo","Arial Narrow",Arial,sans-serif; --body:"IBM Plex Sans",Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.62 "IBM Plex Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img,video{max-width:100%;display:block}
-a{color:var(--blue)}
-a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
-h1,h2,h3{font-family:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;line-height:1.08;margin:0}
-h2{font-size:clamp(30px,4vw,42px);font-weight:700;letter-spacing:-.01em}
-h3{font-size:24px;font-weight:600}
+a{color:var(--cyan)}
+::selection{background:rgba(67,201,240,.3)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05}
+h2{font-size:clamp(34px,4.6vw,54px);font-weight:800;font-stretch:108%;letter-spacing:-.015em}
+h3{font-size:23px;font-weight:700;font-stretch:100%}
 p{margin:0 0 14px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-section{padding:88px 0}
-.lede{color:var(--ink-2);max-width:62ch}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+section{padding:110px 0;position:relative}
+.intro{color:var(--dim);max-width:60ch;margin-top:14px}
+
+/* reveal system */
+.rv{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.rv.in{opacity:1;transform:none;filter:none}
+.mask{display:block;overflow:hidden;padding-bottom:.06em}
+.mask>span{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--i,0) * 120ms + 150ms)}
+.loaded .mask>span{transform:none}
 
 /* nav */
-nav{position:sticky;top:0;z-index:10;background:rgba(244,246,249,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-nav .me{font:600 19px "IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;color:var(--ink);text-decoration:none}
-nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
-nav ul a{color:var(--ink-2);text-decoration:none;font-size:15px;font-weight:500}
-nav ul a:hover{color:var(--blue)}
-@media(max-width:720px){nav ul{display:none}}
+nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.solid{background:rgba(7,14,24,.8);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-color:var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font:800 18px var(--display);font-stretch:110%;color:var(--text);text-decoration:none}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+nav ul a{display:block;padding:7px 14px;border-radius:999px;color:var(--dim);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .3s,background .3s}
+nav ul a:hover{color:var(--text)}
+nav ul a.on{color:var(--bg);background:var(--text)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--cyan),var(--amber))}
+@media(max-width:760px){nav ul{display:none}}
 
 /* hero */
-.hero{padding:76px 0 56px}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.portrait{width:132px;height:132px;border-radius:50%;object-fit:cover;border:4px solid var(--panel);box-shadow:0 0 0 1.5px var(--line);margin-bottom:26px}
-.hero h1{font-size:clamp(56px,8.4vw,104px);font-weight:700;letter-spacing:-.025em;line-height:.95}
-.hero .role{font:500 clamp(20px,2.3vw,25px)/1.35 "IBM Plex Sans",Arial,sans-serif;margin:22px 0 14px;max-width:30ch}
-.hero .lede{font-size:17.5px}
-.status{display:inline-flex;align-items:center;gap:10px;margin:8px 0 26px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:15px;font-weight:500}
-.led{width:10px;height:10px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(247,144,30,.18)}
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:110px 0 70px;overflow:hidden;position:relative}
+#scope{position:absolute;inset:0;width:100%;height:100%}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 25% 45%,rgba(7,14,24,.92),rgba(7,14,24,.4) 70%,transparent),linear-gradient(to bottom,transparent 70%,var(--bg));pointer-events:none}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;width:100%}
+.who{display:flex;align-items:center;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.portrait{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--bg);box-shadow:0 0 0 2px var(--line-2),0 0 28px rgba(67,201,240,.25)}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:8px 15px;border-radius:999px;background:rgba(61,220,151,.08);border:1px solid rgba(61,220,151,.28);color:#BFF3DC;font-size:14.5px;font-weight:500}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative}
+.chip i:after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--green);animation:ping 2s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.hero h1{font-size:clamp(64px,10vw,138px);font-weight:900;font-stretch:112%;letter-spacing:-.035em;line-height:.9}
+.hero h1 .l2{background:linear-gradient(100deg,var(--text) 10%,var(--cyan) 55%,var(--blue) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font:600 clamp(19px,2vw,23px)/1.4 var(--body);margin:26px 0 12px;max-width:34ch}
+.hero .intro{font-size:17.5px;margin:0 0 30px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:12px 20px;border-radius:8px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid var(--blue)}
-.btn.primary{background:var(--blue);color:#fff}
-.btn.primary:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
-.btn.ghost{color:var(--blue);background:transparent}
-.btn.ghost:hover{background:rgba(0,101,168,.07)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:12px;font:600 15.5px var(--body);text-decoration:none;transition:transform .35s var(--ease),box-shadow .35s,background .35s,border-color .35s;will-change:transform}
+.btn.primary{color:#04111D;background:linear-gradient(135deg,var(--cyan),#7FDBF6);box-shadow:0 10px 30px -10px rgba(67,201,240,.7)}
+.btn.primary:hover{box-shadow:0 16px 40px -10px rgba(67,201,240,.9)}
+.btn.ghost{color:var(--text);border:1px solid var(--line-2);background:rgba(255,255,255,.02)}
+.btn.ghost:hover{border-color:var(--cyan);background:rgba(67,201,240,.07)}
 
-/* signal chain diagram */
-.chain{width:100%;height:auto}
-.chain .wire{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s ease-out .2s forwards}
-.chain .node rect{fill:var(--panel);stroke:var(--ink);stroke-width:2}
-.chain .node text{font:600 15px "IBM Plex Sans",Arial,sans-serif;fill:var(--ink)}
-.chain .node .sub{font:400 12.5px "IBM Plex Sans",Arial,sans-serif;fill:var(--ink-2)}
-.chain .lamp{fill:var(--line);animation:lit .5s ease forwards}
-.chain .n1 .lamp{animation-delay:.5s}.chain .n2 .lamp{animation-delay:.9s}.chain .n3 .lamp{animation-delay:1.3s}.chain .n4 .lamp{animation-delay:1.7s}.chain .n5 .lamp{animation-delay:2.1s}
-.chain .icon{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes lit{to{fill:var(--amber)}}
-@media (prefers-reduced-motion:reduce){.chain .wire{animation:none;stroke-dashoffset:0}.chain .lamp{animation:none;fill:var(--amber)}html{scroll-behavior:auto}}
-@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-top:48px}}
+/* signal chain */
+.chain{width:100%;height:auto;overflow:visible}
+.chain .bus{fill:none;stroke:var(--line-2);stroke-width:2}
+.chain .bus-live{fill:none;stroke:url(#busg);stroke-width:2.4;stroke-dasharray:900;stroke-dashoffset:900;transition:stroke-dashoffset 2.2s var(--ease) .5s}
+.loaded .chain .bus-live{stroke-dashoffset:0}
+.chain .node{opacity:0;translate:24px 0;transition:opacity .8s var(--ease),translate .8s var(--ease);transition-delay:calc(var(--i) * 160ms + 700ms)}
+.loaded .chain .node{opacity:1;translate:0 0}
+.chain .node rect{fill:rgba(16,30,49,.85);stroke:var(--line-2);stroke-width:1.2;transition:stroke .4s,fill .4s}
+.chain .node:hover rect{stroke:var(--cyan);fill:rgba(22,44,70,.95)}
+.chain .t1{font:600 15.5px var(--body);fill:var(--text)}
+.chain .t2{font:400 12.5px var(--body);fill:var(--dim)}
+.chain .ic{fill:none;stroke:var(--cyan);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.chain .lamp{fill:var(--mute);transition:fill .5s;transition-delay:calc(var(--i) * 160ms + 1400ms)}
+.loaded .chain .lamp{fill:var(--amber);filter:drop-shadow(0 0 5px var(--amber))}
+.chain .pulse{fill:var(--cyan);filter:drop-shadow(0 0 6px var(--cyan))}
+.scroll-cue{position:absolute;left:50%;bottom:26px;z-index:3;width:24px;height:38px;border:1.5px solid var(--line-2);border-radius:14px;transform:translateX(-50%)}
+.scroll-cue:after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--cyan);animation:cue 1.8s var(--ease) infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}
+@media(max-width:940px){.hero .wrap{grid-template-columns:1fr}.chain{max-width:520px}.scroll-cue{display:none}}
+
+/* section heads */
+.head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--cyan);font-weight:600;font-size:15px;margin-bottom:14px}
+.kicker:before{content:"";width:28px;height:2px;background:currentColor}
 
 /* featured */
-.featured{background:var(--ink);color:#E8EEF5}
-.featured h2{color:#fff}
-.featured .lede{color:#AEBBCB}
-.ctx{font-size:15px;color:var(--ink-2);margin:10px 0 0}
-.featured .ctx{color:#AEBBCB}
-.fhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:34px}
-.video{border-radius:10px;overflow:hidden;border:1px solid #2A3B4E;background:#000}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:30px 0 8px;border-top:1px solid #2A3B4E;border-bottom:1px solid #2A3B4E}
-.facts div{padding:20px 22px;border-right:1px solid #2A3B4E}
-.facts div:last-child{border-right:0}
-.facts b{display:block;font:700 36px "IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;color:#fff}
-.facts span{font-size:15px;color:#AEBBCB}
-@media(max-width:700px){.facts{grid-template-columns:1fr}.facts div{border-right:0;border-bottom:1px solid #2A3B4E}.facts div:last-child{border-bottom:0}}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:44px}
-@media(max-width:860px){.cols{grid-template-columns:1fr}}
-.featured h3{color:#fff;margin-bottom:12px}
-.featured li{margin-bottom:8px}
-.featured ul{padding-left:20px;margin:0}
-.arch{background:#0F1A26;border:1px solid #2A3B4E;border-radius:10px;padding:18px}
-.arch svg text,.proj svg text,.chain text{font-family:"IBM Plex Sans",Arial,sans-serif}
-.shots{display:grid;grid-template-columns:1fr 1.7fr;gap:22px;margin-top:44px;align-items:start}
-.shots figure{margin:0}
-.shots img{border-radius:8px;border:1px solid #2A3B4E;width:100%;height:auto}
-.shots .tall img{height:100%;max-height:640px;object-fit:cover}
-.shots .tall{grid-row:span 2}
-.shots figcaption{font-size:13.5px;color:#8D9CAE;margin-top:7px}
-@media(max-width:760px){.shots{grid-template-columns:1fr}.shots .tall{grid-row:auto}}
-.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.tag{font-size:13.5px;font-weight:500;padding:4px 11px;border-radius:6px;background:#E3EAF2;color:var(--blue-deep)}
-.featured .tag{background:#1D2E42;color:#CFE0F2}
+.featured{background:radial-gradient(ellipse 80% 50% at 80% 0%,rgba(37,132,216,.16),transparent 70%),var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ctx{color:var(--dim);font-size:15px;margin-top:12px}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+.frame{position:relative;border-radius:18px;padding:1.5px;background:conic-gradient(from var(--a),var(--line-2),var(--cyan),var(--line-2) 30%,var(--line-2) 60%,var(--amber),var(--line-2));animation:spin 8s linear infinite;box-shadow:0 30px 80px -30px rgba(37,132,216,.45)}
+@keyframes spin{to{--a:360deg}}
+.frame>div{border-radius:17px;overflow:hidden;background:#000}
+.frame video{width:100%}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 0}
+.fact{padding:24px 26px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.fact b{display:block;font:850 46px/1 var(--display);font-stretch:112%;background:linear-gradient(120deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px}
+.fact span{color:var(--dim);font-size:15px}
+@media(max-width:760px){.facts{grid-template-columns:1fr}}
+.cols{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;margin-top:64px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.list{list-style:none;padding:0;margin:0}
+.list li{position:relative;padding:0 0 14px 26px;color:#C9D6E4}
+.list li:before{content:"";position:absolute;left:0;top:.62em;width:10px;height:10px;border-radius:3px;border:2px solid var(--cyan);transform:rotate(45deg) scale(.8)}
+.sub{margin:18px 0 26px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:13.5px;font-weight:500;padding:5px 12px;border-radius:999px;border:1px solid var(--line-2);color:#C6D7EA;background:rgba(255,255,255,.02);transition:border-color .3s,color .3s,background .3s}
+.tag:hover{border-color:var(--cyan);color:#fff;background:rgba(67,201,240,.08)}
+.arch{border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(16,30,49,.9),rgba(9,18,30,.9));padding:20px}
+.arch .box rect{fill:#0F2034;stroke:var(--line-2);stroke-width:1.2}
+.arch .box.node rect{stroke:var(--amber)}
+.arch .t1{font:600 13.5px var(--body);fill:var(--text)}
+.arch .t2{font:400 11.5px var(--body);fill:var(--dim)}
+.arch .up{fill:none;stroke:#3C6E9C;stroke-width:1.6}
+.arch .dn{fill:none;stroke:#8A5A23;stroke-width:1.6;stroke-dasharray:5 5}
+.legend{display:flex;gap:22px;margin-top:12px;font-size:13.5px;color:var(--dim);flex-wrap:wrap}
+.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+.legend .u:before{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.legend .d:before{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.gallery{display:grid;grid-template-columns:1fr 1.7fr;gap:18px;margin-top:64px;align-items:start}
+.gallery figure{margin:0}
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.shot img{transition:transform 1.2s var(--ease)}
+.shot:hover img{transform:scale(1.04)}
+.gallery .tall img{max-height:660px;width:100%;object-fit:cover}
+.gallery .stack-2{display:grid;gap:18px}
+figcaption{font-size:13.5px;color:var(--mute);margin-top:9px}
+@media(max-width:780px){.gallery{grid-template-columns:1fr}}
 
-/* project list */
-.plist{margin-top:40px;border-top:1.5px solid var(--ink)}
-.proj{display:grid;grid-template-columns:220px 1fr 300px;gap:32px;padding:34px 0;border-bottom:1px solid var(--line)}
-.proj .kind{font-size:14.5px;color:var(--ink-2);font-weight:500}
-.proj .kind strong{display:block;color:var(--blue);font-weight:600;font-size:15px}
-.proj h3{margin-bottom:10px}
-.proj p{color:var(--ink-2)}
-.proj .vis{align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:170px;display:flex;align-items:center;justify-content:center;padding:14px}
-.proj .vis svg{width:100%;height:auto}
-@media(max-width:980px){.proj{grid-template-columns:1fr;gap:14px}.proj .vis{max-width:420px}}
+/* projects */
+.projects{display:grid;gap:22px}
+.proj{position:relative;display:grid;grid-template-columns:1fr 300px;gap:36px;padding:36px;border-radius:20px;background:var(--panel);border:1px solid var(--line);overflow:hidden;isolation:isolate;transition:border-color .4s}
+.proj:before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(67,201,240,.13),transparent 60%)}
+.proj:hover{border-color:var(--line-2)}
+.proj:hover:before{opacity:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14.5px;color:var(--dim);margin-bottom:12px}
+.meta b{color:var(--amber);font-weight:600}
+.proj h3{font-size:clamp(23px,2.4vw,29px);font-stretch:104%;margin-bottom:14px}
+.proj p{color:#C2CFDD}
+.vis{border-radius:14px;border:1px solid var(--line);background:linear-gradient(160deg,#0E1D30,#0A1524);display:flex;align-items:center;justify-content:center;padding:18px;align-self:start;min-height:180px}
+.vis svg{width:100%;height:auto}
+.vis .k{stroke:#C9D6E4}.vis .a{stroke:var(--amber)}.vis .c{stroke:var(--cyan)}.vis .g{stroke:var(--line-2)}
+.vis .draw{stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 2s var(--ease) .3s}
+.in .vis .draw{stroke-dashoffset:0}
+@media(max-width:900px){.proj{grid-template-columns:1fr;padding:26px}.vis{max-width:420px}}
 
-/* experience timeline */
-.tl{list-style:none;padding:0;margin:40px 0 0;position:relative}
-.tl:before{content:"";position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--line)}
-.tl li{position:relative;padding:0 0 34px 42px}
-.tl li:before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2.5px solid var(--blue)}
-.tl h3{font-size:22px}
-.tl .org{font-weight:600;color:var(--blue);margin:4px 0 8px}
-.tl p{color:var(--ink-2);max-width:70ch}
+/* experience */
+.timeline{position:relative;list-style:none;margin:0;padding:0 0 0 46px}
+.tl-rail,.tl-fill{position:absolute;left:11px;top:16px;bottom:10px;width:2px;border-radius:2px;z-index:0}
+.tl-rail{background:var(--line)}
+.tl-fill{background:linear-gradient(var(--cyan),var(--blue));transform-origin:top;transform:scaleY(0);box-shadow:0 0 12px rgba(67,201,240,.5)}
+.timeline{z-index:1}
+.timeline li{position:relative;padding:0 0 46px}
+.timeline li:last-of-type{padding-bottom:0}
+.timeline .dot{position:absolute;left:-46px;top:6px;width:24px;height:24px;border-radius:50%;background:var(--bg-2);border:2px solid var(--line-2);transition:border-color .5s,box-shadow .5s}
+.timeline .dot:after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--line-2);transition:background .5s}
+.timeline li.lit .dot{border-color:var(--cyan);box-shadow:0 0 16px rgba(67,201,240,.6)}
+.timeline li.lit .dot:after{background:var(--cyan)}
+.when{display:inline-block;font-size:14px;font-weight:600;color:var(--amber);margin-bottom:6px}
+.timeline h3{font-size:24px;margin-bottom:6px}
+.org{color:var(--cyan);font-weight:500;margin-bottom:10px}
+.timeline p{color:#C2CFDD;max-width:72ch}
 
 /* skills */
-.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 40px;margin-top:40px}
-.skills h3{font-size:20px;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
-.skills ul{list-style:none;padding:0;margin:0;color:var(--ink-2)}
-.skills li{padding:3px 0}
-@media(max-width:860px){.skills{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.skills{grid-template-columns:1fr}}
-
-.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
-.edu .when{margin-top:10px;font-weight:600;color:var(--blue)}
-.edu div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
-.edu h3{font-size:21px;margin-bottom:6px}
-.edu p{color:var(--ink-2);margin:0}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sk{padding:26px;border-radius:18px;background:var(--panel);border:1px solid var(--line);transition:border-color .4s,translate .5s var(--ease)}
+.sk:hover{border-color:var(--line-2);translate:0 -4px}
+.sk h3{font-size:19px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sk h3 svg{width:32px;height:32px;padding:6px;border-radius:9px;background:rgba(67,201,240,.1);stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sk .tags{margin-top:0}
+@media(max-width:940px){.skills{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.skills{grid-template-columns:1fr}}
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ed{padding:26px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(16,30,49,.8),rgba(9,18,30,.6))}
+.ed h3{font-size:20px;margin:8px 0 8px}
+.ed p{color:var(--dim);margin:0}
 @media(max-width:900px){.edu{grid-template-columns:1fr}}
 
-.contact{background:var(--blue);color:#fff}
-.contact h2{color:#fff}
-.contact p{color:#D6E8F7;max-width:56ch}
-.contact .btn{border-color:#fff}
-.contact .btn.primary{background:#fff;color:var(--blue)}
-.contact .btn.ghost{color:#fff}
-.contact .btn.ghost:hover{background:rgba(255,255,255,.12)}
-footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
+/* contact */
+.contact{text-align:center;overflow:hidden;background:radial-gradient(ellipse 60% 80% at 50% 115%,rgba(37,132,216,.38),transparent 70%),var(--bg)}
+.contact h2{font-size:clamp(40px,6.4vw,84px);font-stretch:112%;font-weight:900;letter-spacing:-.03em}
+.contact .intro{margin:22px auto 34px}
+.contact .cta{justify-content:center}
+.mail{display:block;margin-top:26px;color:var(--dim);font-size:15px}
+footer{border-top:1px solid var(--line);padding:26px 0;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none;filter:none}.mask>span{transform:none}
+  .chain .node{opacity:1;translate:0 0}.chain .bus-live{stroke-dashoffset:0}.vis .draw{stroke-dashoffset:0}
+}
 </style>
 </head>
 <body>
 
-<nav aria-label="Main">
+<nav id="nav" aria-label="Main">
   <div class="wrap">
-    <a class="me" href="#top">Khalil Saidi</a>
+    <a class="brand" href="#top"><i aria-hidden="true"></i>Khalil Saidi</a>
     <ul>
+      <li><a href="#safeguard">Featured</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
+  <div class="progress" id="progress"></div>
 </nav>
 
 <header class="hero" id="top">
+  <canvas id="scope" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
-      <img class="portrait" src="assets/khalil-saidi.jpg" alt="Portrait of Khalil Saidi" width="132" height="132">
-      <h1>Khalil<br>Saidi</h1>
-      <p class="role">Electrical and automation engineering student at École Polytechnique de Sousse</p>
-      <p class="lede">I build systems that measure, decide and act: PLC programs, embedded and IoT nodes, and grid-forming control of power converters.</p>
-      <div class="status"><span class="led" aria-hidden="true"></span>Looking for a final-year (PFE) internship in 2027</div>
-      <div class="cta">
-        <a class="btn primary" href="#projects">See my projects</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">LinkedIn profile</a>
+      <div class="who rv" style="--i:0">
+        <img class="portrait" src="assets/khalil-saidi.jpg" alt="Portrait of Khalil Saidi" width="76" height="76">
+        <span class="chip"><i aria-hidden="true"></i>Open to a PFE internship in 2027</span>
+      </div>
+      <h1><span class="mask" style="--i:0"><span>Khalil</span></span><span class="mask" style="--i:1"><span class="l2">Saidi</span></span></h1>
+      <p class="role rv" style="--i:3">Electrical and automation engineering student at École Polytechnique de Sousse</p>
+      <p class="intro rv" style="--i:4">I build systems that measure, decide and act: PLC programs, embedded and IoT nodes, and grid-forming control of power converters.</p>
+      <div class="cta rv" style="--i:5">
+        <a class="btn primary mag" href="#safeguard">See my work</a>
+        <a class="btn ghost mag" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">LinkedIn profile</a>
       </div>
     </div>
 
-    <svg class="chain" viewBox="0 0 520 470" role="img" aria-label="My fields, from power to the cloud: power and energy, control, automation, embedded systems, IoT and cloud">
-      <path class="wire" d="M70 40 V430 M70 40 H120 M70 120 H120 M70 200 H120 M70 280 H120 M70 360 H120"/>
-      <circle cx="70" cy="40" r="5" fill="#13212F"/><circle cx="70" cy="430" r="5" fill="#13212F"/>
-      <g class="node n1" transform="translate(120,12)">
-        <rect width="370" height="58" rx="8"/>
-        <path class="icon" d="M20 29c6-14 12-14 18 0s12 14 18 0"/>
-        <text x="74" y="25">Power &amp; energy</text><text class="sub" x="74" y="44">grid-forming converters, renewables, installations</text>
-        <circle class="lamp" cx="350" cy="29" r="6"/>
-      </g>
-      <g class="node n2" transform="translate(120,92)">
-        <rect width="370" height="58" rx="8"/>
-        <path class="icon" d="M18 40h10l6-20 8 20h16M44 18v6"/>
-        <text x="74" y="25">Control systems</text><text class="sub" x="74" y="44">PID, cascaded loops, MATLAB / Simulink</text>
-        <circle class="lamp" cx="350" cy="29" r="6"/>
-      </g>
-      <g class="node n3" transform="translate(120,172)">
-        <rect width="370" height="58" rx="8"/>
-        <path class="icon" d="M18 16h38v26H18zM28 16v26M18 24h10M18 33h10M34 23h16v8H34z"/>
-        <text x="74" y="25">Industrial automation</text><text class="sub" x="74" y="44">PLC programming in Siemens TIA Portal</text>
-        <circle class="lamp" cx="350" cy="29" r="6"/>
-      </g>
-      <g class="node n4" transform="translate(120,252)">
-        <rect width="370" height="58" rx="8"/>
-        <path class="icon" d="M26 18h22v22H26zM31 18v-5M37 18v-5M43 18v-5M31 40v5M37 40v5M43 40v5M26 24h-5M26 34h-5M48 24h5M48 34h5"/>
-        <text x="74" y="25">Embedded systems</text><text class="sub" x="74" y="44">ESP32, Raspberry Pi, sensors and actuators</text>
-        <circle class="lamp" cx="350" cy="29" r="6"/>
-      </g>
-      <g class="node n5" transform="translate(120,332)">
-        <rect width="370" height="58" rx="8"/>
-        <path class="icon" d="M24 40h26a8 8 0 0 0 0-16 11 11 0 0 0-21-3 9 9 0 0 0-5 19z"/>
-        <text x="74" y="25">IoT &amp; cloud</text><text class="sub" x="74" y="44">MQTT, Docker, Firebase, dashboards</text>
-        <circle class="lamp" cx="350" cy="29" r="6"/>
-      </g>
-      <text x="120" y="455" font-family="IBM Plex Sans" font-size="13" fill="#4A5868">From the power stage to the dashboard</text>
+    <svg class="chain" viewBox="0 0 520 480" role="img" aria-label="My fields, from the power stage to the cloud: power and energy, control systems, industrial automation, embedded systems, IoT and cloud">
+      <defs><linearGradient id="busg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43C9F0"/><stop offset="1" stop-color="#2584D8"/></linearGradient></defs>
+      <path class="bus" d="M60 44V436M60 44H110M60 124H110M60 204H110M60 284H110M60 364H110"/>
+      <path class="bus-live" d="M60 44V436"/>
+      <path class="bus-live" d="M60 44H110M60 124H110M60 204H110M60 284H110M60 364H110"/>
+      <circle cx="60" cy="44" r="5" fill="#43C9F0"/><circle cx="60" cy="436" r="5" fill="#2584D8"/>
+      <circle class="pulse" r="4"><animateMotion dur="3.2s" repeatCount="indefinite" path="M60 44V436"/></circle>
+      <g class="node" style="--i:0" transform="translate(110,14)"><rect width="390" height="60" rx="12"/>
+        <path class="ic" d="M20 30c6-14 12-14 18 0s12 14 18 0"/><text class="t1" x="74" y="26">Power &amp; energy</text><text class="t2" x="74" y="45">grid-forming converters, clean energy, installations</text><circle class="lamp" style="--i:0" cx="368" cy="30" r="5"/></g>
+      <g class="node" style="--i:1" transform="translate(110,94)"><rect width="390" height="60" rx="12"/>
+        <path class="ic" d="M18 41h10l6-20 8 20h16M44 18v6"/><text class="t1" x="74" y="26">Control systems</text><text class="t2" x="74" y="45">droop and dq control, MATLAB / Simulink</text><circle class="lamp" style="--i:1" cx="368" cy="30" r="5"/></g>
+      <g class="node" style="--i:2" transform="translate(110,174)"><rect width="390" height="60" rx="12"/>
+        <path class="ic" d="M18 17h38v26H18zM28 17v26M18 25h10M18 34h10M34 24h16v8H34z"/><text class="t1" x="74" y="26">Industrial automation</text><text class="t2" x="74" y="45">PLC programming in Siemens TIA Portal</text><circle class="lamp" style="--i:2" cx="368" cy="30" r="5"/></g>
+      <g class="node" style="--i:3" transform="translate(110,254)"><rect width="390" height="60" rx="12"/>
+        <path class="ic" d="M26 19h22v22H26zM31 19v-5M37 19v-5M43 19v-5M31 41v5M37 41v5M43 41v5M26 25h-5M26 35h-5M48 25h5M48 35h5"/><text class="t1" x="74" y="26">Embedded systems</text><text class="t2" x="74" y="45">ESP32, Raspberry Pi, RFID, sensors and actuators</text><circle class="lamp" style="--i:3" cx="368" cy="30" r="5"/></g>
+      <g class="node" style="--i:4" transform="translate(110,334)"><rect width="390" height="60" rx="12"/>
+        <path class="ic" d="M24 41h26a8 8 0 0 0 0-16 11 11 0 0 0-21-3 9 9 0 0 0-5 19z"/><text class="t1" x="74" y="26">IoT &amp; cloud</text><text class="t2" x="74" y="45">MQTT, Docker, Firebase, dashboards</text><circle class="lamp" style="--i:4" cx="368" cy="30" r="5"/></g>
+      <text x="110" y="440" style="font:400 13px 'IBM Plex Sans',Arial,sans-serif;fill:#5F738B">From the power stage to the dashboard</text>
     </svg>
   </div>
+  <a class="scroll-cue" href="#safeguard" aria-label="Scroll to the featured project"></a>
 </header>
 
-<section class="featured" id="projects" aria-labelledby="sg-title">
+<section class="featured" id="safeguard" aria-labelledby="sg-title">
   <div class="wrap">
-    <div class="fhead">
+    <div class="head">
       <div>
-        <h2 id="sg-title">SafeGuard IIoT</h2>
-        <p class="ctx">Semester project, École Polytechnique de Sousse · with Wassim Bergaoui · supervised by Mr. Khaled Ben Khlifa</p>
+        <div class="kicker rv">Featured project</div>
+        <h2 id="sg-title" class="rv" style="--i:1">SafeGuard IIoT</h2>
+        <p class="ctx rv" style="--i:2">Semester project at École Polytechnique de Sousse, with Wassim Bergaoui, supervised by Mr. Khaled Ben Khlifa</p>
       </div>
-      <p class="lede" style="max-width:46ch;margin:0">Fire, heat and air-quality monitoring for a workshop, with an automatic ventilation flap and remote supervision in the cloud.</p>
+      <p class="intro rv" style="--i:3;max-width:44ch;margin:0">Fire, heat and air-quality monitoring for a workshop, with an automatic ventilation flap and remote supervision in the cloud.</p>
     </div>
 
-    <div class="video">
+    <div class="frame rv"><div>
       <video controls preload="none" poster="assets/safeguard-demo-poster.jpg" aria-label="SafeGuard IIoT demonstration video">
         <source src="assets/safeguard-demo.mp4" type="video/mp4">
       </video>
-    </div>
-    <p class="ctx" style="margin-top:10px">Demo on the real prototype (1 min 34, captions in French): start-up, telemetry, gas, temperature and fire alerts, remote control.</p>
+    </div></div>
+    <p class="ctx">Demo on the real prototype, 1 min 34 with French captions: start-up, telemetry, gas, temperature and fire alerts, remote control.</p>
 
     <div class="facts">
-      <div><b>0.33 s</b><span>from a dashboard command to the node's confirmation</span></div>
-      <div><b>100 ms</b><span>flame scan period, confirmed over 3 readings</span></div>
-      <div><b>5 s</b><span>telemetry period over MQTT</span></div>
+      <div class="fact rv" style="--i:0"><b data-count="0.33" data-dec="2" data-unit=" s">0.33 s</b><span>from a dashboard command to the node's confirmation</span></div>
+      <div class="fact rv" style="--i:1"><b data-count="100" data-dec="0" data-unit=" ms">100 ms</b><span>flame scan period, confirmed over three readings</span></div>
+      <div class="fact rv" style="--i:2"><b data-count="5" data-dec="0" data-unit=" s">5 s</b><span>telemetry period over MQTT</span></div>
     </div>
 
     <div class="cols">
-      <div>
+      <div class="rv">
         <h3>What it does</h3>
-        <ul>
-          <li>An ESP32 reads an IR flame sensor, a DHT11 (temperature, humidity) and an MQ-135 gas sensor.</li>
-          <li>A state machine on the node decides: fire, heat alert, air-quality alert or normal. It drives a local alarm and a servo-driven ventilation flap.</li>
+        <ul class="list sub">
+          <li>An ESP32 reads an IR flame sensor, a DHT11 for temperature and humidity, and an MQ-135 gas sensor.</li>
+          <li>A state machine on the node decides between fire, heat alert, air-quality alert and normal, and drives a local alarm and a servo-driven ventilation flap.</li>
           <li>Safety never depends on the network: if Wi-Fi or the broker goes down, detection and alarm keep running.</li>
-          <li>Telemetry and alerts go over MQTT to a Mosquitto broker in Docker. A Python gateway stores them in Firebase Realtime Database.</li>
+          <li>Telemetry and alerts travel over MQTT to a Mosquitto broker in Docker; a Python gateway stores them in Firebase Realtime Database.</li>
           <li>A Streamlit dashboard shows live values, trends and the alert log, and sends commands back to the flap.</li>
         </ul>
-        <h3 style="margin-top:28px">Security</h3>
-        <ul>
+        <h3>Security</h3>
+        <ul class="list sub">
           <li>No anonymous access to the broker, one account per client, hashed passwords.</li>
-          <li>Credentials kept out of the code; closed Firebase rules, HTTPS only.</li>
+          <li>Credentials kept out of the code, closed Firebase rules, HTTPS only.</li>
         </ul>
-        <div class="stack">
-          <span class="tag">ESP32</span><span class="tag">C++ (Arduino)</span><span class="tag">MQTT</span><span class="tag">Mosquitto</span><span class="tag">Docker</span><span class="tag">MQTTX</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Streamlit</span>
-        </div>
+        <div class="tags"><span class="tag">ESP32</span><span class="tag">C++ (Arduino)</span><span class="tag">MQTT</span><span class="tag">Mosquitto</span><span class="tag">Docker</span><span class="tag">MQTTX</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Streamlit</span></div>
       </div>
-      <div>
-        <h3>Architecture</h3>
+      <div class="rv" style="--i:1">
+        <h3 style="margin-bottom:18px">Architecture, live</h3>
         <div class="arch">
-          <svg viewBox="0 0 480 380" role="img" aria-label="Architecture: sensors to ESP32, MQTT broker in Docker, Python gateway, Firebase, dashboard; commands flow back the same way">
-            <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7FB3E0"/></marker>
-            <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F7901E"/></marker></defs>
-            <g font-size="13" fill="#E8EEF5">
-              <rect x="10" y="20" width="140" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="80" y="48" text-anchor="middle" font-weight="600">Sensors</text><text x="80" y="68" text-anchor="middle" fill="#AEBBCB" font-size="11.5">flame · DHT11 · MQ-135</text>
-              <rect x="10" y="150" width="140" height="80" rx="8" fill="#16273A" stroke="#F7901E"/><text x="80" y="180" text-anchor="middle" font-weight="600">ESP32 node</text><text x="80" y="199" text-anchor="middle" fill="#AEBBCB" font-size="11.5">state machine</text><text x="80" y="215" text-anchor="middle" fill="#AEBBCB" font-size="11.5">alarm · flap servo</text>
-              <rect x="320" y="20" width="150" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="48" text-anchor="middle" font-weight="600">Mosquitto broker</text><text x="395" y="68" text-anchor="middle" fill="#AEBBCB" font-size="11.5">Docker, port 1884</text>
-              <rect x="320" y="150" width="150" height="80" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="184" text-anchor="middle" font-weight="600">Python gateway</text><text x="395" y="204" text-anchor="middle" fill="#AEBBCB" font-size="11.5">MQTT ⇄ Firebase</text>
-              <rect x="320" y="290" width="150" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="395" y="320" text-anchor="middle" font-weight="600">Firebase RTDB</text><text x="395" y="340" text-anchor="middle" fill="#AEBBCB" font-size="11.5">live · history · alerts</text>
-              <rect x="10" y="290" width="140" height="72" rx="8" fill="#16273A" stroke="#3B5470"/><text x="80" y="320" text-anchor="middle" font-weight="600">Dashboard</text><text x="80" y="340" text-anchor="middle" fill="#AEBBCB" font-size="11.5">Streamlit</text>
+          <svg viewBox="0 0 480 380" role="img" aria-label="Architecture: sensors feed the ESP32 node, which publishes to the Mosquitto broker in Docker; a Python gateway writes to Firebase, read by the dashboard. Commands flow back the same way.">
+            <g class="box"><rect x="10" y="20" width="140" height="72" rx="10"/><text class="t1" x="80" y="50" text-anchor="middle">Sensors</text><text class="t2" x="80" y="70" text-anchor="middle">flame, DHT11, MQ-135</text></g>
+            <g class="box node"><rect x="10" y="150" width="140" height="80" rx="10"/><text class="t1" x="80" y="182" text-anchor="middle">ESP32 node</text><text class="t2" x="80" y="201" text-anchor="middle">state machine</text><text class="t2" x="80" y="217" text-anchor="middle">alarm, flap servo</text></g>
+            <g class="box"><rect x="320" y="20" width="150" height="72" rx="10"/><text class="t1" x="395" y="50" text-anchor="middle">Mosquitto broker</text><text class="t2" x="395" y="70" text-anchor="middle">Docker, port 1884</text></g>
+            <g class="box"><rect x="320" y="150" width="150" height="80" rx="10"/><text class="t1" x="395" y="186" text-anchor="middle">Python gateway</text><text class="t2" x="395" y="205" text-anchor="middle">MQTT ⇄ Firebase</text></g>
+            <g class="box"><rect x="320" y="290" width="150" height="72" rx="10"/><text class="t1" x="395" y="320" text-anchor="middle">Firebase RTDB</text><text class="t2" x="395" y="340" text-anchor="middle">live, history, alerts</text></g>
+            <g class="box"><rect x="10" y="290" width="140" height="72" rx="10"/><text class="t1" x="80" y="320" text-anchor="middle">Dashboard</text><text class="t2" x="80" y="340" text-anchor="middle">Streamlit</text></g>
+            <path class="up" id="u1" d="M80 92V150"/>
+            <path class="up" id="u2" d="M150 175C230 175 240 60 320 60"/>
+            <path class="up" id="u3" d="M386 92V150"/>
+            <path class="up" id="u4" d="M386 230V290"/>
+            <path class="up" id="u5" d="M320 326H150"/>
+            <path class="dn" id="d1" d="M150 344H320"/>
+            <path class="dn" id="d2" d="M406 290V230"/>
+            <path class="dn" id="d3" d="M406 150V92"/>
+            <path class="dn" id="d4" d="M320 80C250 80 240 205 150 205"/>
+            <g fill="#43C9F0" style="filter:drop-shadow(0 0 4px #43C9F0)">
+              <circle r="3.6"><animateMotion dur="1.1s" repeatCount="indefinite"><mpath href="#u1"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.8s" begin=".3s" repeatCount="indefinite"><mpath href="#u2"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.1s" begin=".6s" repeatCount="indefinite"><mpath href="#u3"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.1s" begin=".9s" repeatCount="indefinite"><mpath href="#u4"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.6s" begin="1.2s" repeatCount="indefinite"><mpath href="#u5"/></animateMotion></circle>
             </g>
-            <g fill="none" stroke-width="2">
-              <path d="M80 92 V146" stroke="#7FB3E0" marker-end="url(#ar)"/>
-              <path d="M150 175 C 230 175, 240 60, 316 60" stroke="#7FB3E0" marker-end="url(#ar)"/>
-              <path d="M386 92 V146" stroke="#7FB3E0" marker-end="url(#ar)"/>
-              <path d="M386 230 V286" stroke="#7FB3E0" marker-end="url(#ar)"/>
-              <path d="M320 326 H154" stroke="#7FB3E0" marker-end="url(#ar)"/>
-              <path d="M150 340 H316" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
-              <path d="M406 286 V234" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
-              <path d="M406 146 V96" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
-              <path d="M316 80 C 250 80, 240 205, 154 205" stroke="#F7901E" marker-end="url(#ao)" stroke-dasharray="5 4"/>
+            <g fill="#FFAD4D" style="filter:drop-shadow(0 0 4px #FFAD4D)">
+              <circle r="3.6"><animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#d1"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.1s" begin=".4s" repeatCount="indefinite"><mpath href="#d2"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.1s" begin=".8s" repeatCount="indefinite"><mpath href="#d3"/></animateMotion></circle>
+              <circle r="3.6"><animateMotion dur="1.8s" begin="1.1s" repeatCount="indefinite"><mpath href="#d4"/></animateMotion></circle>
             </g>
-            <g font-size="11.5"><text x="196" y="100" fill="#7FB3E0">telemetry, alerts</text><text x="190" y="250" fill="#F7901E">commands (QoS 1)</text></g>
           </svg>
         </div>
+        <div class="legend"><span class="u">telemetry and alerts</span><span class="d">commands, QoS 1</span></div>
       </div>
     </div>
 
-    <div class="shots">
-      <figure class="tall"><img src="assets/safeguard-prototype.jpg" alt="SafeGuard prototype on two breadboards: ESP32, flame sensor, DHT11, MQ-135 and servo motor" loading="lazy"><figcaption>The prototype: ESP32, IR flame sensor, DHT11, MQ-135 and SG90 servo.</figcaption></figure>
-      <figure><img src="assets/safeguard-dashboard.jpg" alt="Streamlit dashboard showing live readings and flap controls" loading="lazy"><figcaption>Live dashboard with remote flap control.</figcaption></figure>
-      <figure><img src="assets/safeguard-alerts.jpg" alt="Alert log archived in Firebase, shown in the dashboard" loading="lazy"><figcaption>Alert log archived in Firebase: fire, return to normal, node offline.</figcaption></figure>
+    <div class="gallery">
+      <figure class="tall rv"><div class="shot"><img src="assets/safeguard-prototype.jpg" alt="SafeGuard prototype on two breadboards: ESP32, flame sensor, DHT11, MQ-135 and servo motor" loading="lazy"></div><figcaption>The prototype: ESP32, IR flame sensor, DHT11, MQ-135 and SG90 servo.</figcaption></figure>
+      <div class="stack-2">
+        <figure class="rv" style="--i:1"><div class="shot"><img src="assets/safeguard-dashboard.jpg" alt="Streamlit dashboard showing live readings and flap controls" loading="lazy"></div><figcaption>Live dashboard with remote flap control.</figcaption></figure>
+        <figure class="rv" style="--i:2"><div class="shot"><img src="assets/safeguard-alerts.jpg" alt="Alert log archived in Firebase, shown in the dashboard" loading="lazy"></div><figcaption>Alert log archived in Firebase: fire, return to normal, node offline.</figcaption></figure>
+      </div>
     </div>
   </div>
 </section>
 
-<section aria-labelledby="more-title">
+<section id="projects" aria-labelledby="pj-title">
   <div class="wrap">
-    <h2 id="more-title">More projects</h2>
-    <div class="plist">
+    <div class="head"><div><div class="kicker rv">Projects</div><h2 id="pj-title" class="rv" style="--i:1">More of my work</h2></div>
+      <p class="intro rv" style="--i:2;margin:0;max-width:46ch">From an automotive plant to a research lab and the sea: hardware I built, code I wrote and controllers I designed.</p></div>
 
-      <article class="proj">
-        <div class="kind"><strong>Bachelor's final-year internship</strong>LEONI Wiring Systems Tunisia<br>Feb – Jun 2024</div>
+    <div class="projects">
+      <article class="proj rv">
         <div>
+          <div class="meta"><b>Bachelor's final-year internship</b><span>LEONI Wiring Systems Tunisia</span><span>Feb – Jun 2024</span></div>
           <h3>Smart tool cabinet with RFID access</h3>
           <p>An intelligent management system for the cable-tie guns used in automotive wiring production. Operators authenticate with an RFID badge; a Raspberry Pi 4B unlocks the matching electromagnetic lock and logs every tool operation in real time.</p>
           <p>I wrote the embedded software in Python and used Firebase Realtime Database for user management, data storage and live monitoring. The system also sends SMS alerts and supports preventive maintenance, improving traceability, reducing tool loss and tightening inventory control.</p>
-          <div class="stack"><span class="tag">Raspberry Pi 4B</span><span class="tag">RFID RC522</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Relays and electromagnetic locks</span><span class="tag">LCD</span><span class="tag">SMS alerts</span></div>
+          <div class="tags"><span class="tag">Raspberry Pi 4B</span><span class="tag">RFID RC522</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Electromagnetic locks</span><span class="tag">LCD</span><span class="tag">SMS alerts</span></div>
         </div>
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 280 150" fill="none" stroke="#13212F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-            <rect x="20" y="15" width="80" height="120" rx="6"/><path d="M60 15v120"/><circle cx="52" cy="75" r="3" fill="#13212F"/><circle cx="68" cy="75" r="3" fill="#13212F"/>
-            <rect x="120" y="55" width="40" height="40" rx="4" stroke="#0065A8"/><path d="M128 75a12 12 0 0 1 24 0M132 75a8 8 0 0 1 16 0" stroke="#0065A8"/>
-            <rect x="185" y="45" width="78" height="56" rx="6"/><path d="M196 58h56M196 70h40M196 82h48" stroke="#4A5868"/>
-            <path d="M100 75h20M160 75h25"/><circle cx="140" cy="118" r="5" fill="#F7901E" stroke="none"/>
-          </svg>
-        </div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+          <rect class="k draw" x="20" y="15" width="80" height="120" rx="6"/><path class="k draw" d="M60 15v120"/><circle cx="52" cy="75" r="3" fill="#C9D6E4"/><circle cx="68" cy="75" r="3" fill="#C9D6E4"/>
+          <rect class="c draw" x="120" y="55" width="40" height="40" rx="5"/><path class="c" d="M128 75a12 12 0 0 1 24 0M132 75a8 8 0 0 1 16 0"/>
+          <rect class="k draw" x="185" y="45" width="78" height="56" rx="6"/><path class="g" d="M196 58h56M196 70h40M196 82h48"/>
+          <path class="k" d="M100 75h20M160 75h25"/><circle cx="140" cy="118" r="5" fill="#FFAD4D"/></svg></div>
       </article>
 
-      <article class="proj">
-        <div class="kind"><strong>Research master's thesis</strong>LATIS laboratory, ENISO<br>Jun 2026 – present</div>
+      <article class="proj rv">
         <div>
+          <div class="meta"><b>Research master's thesis</b><span>LATIS laboratory, ENISO</span><span>Jun 2026 – present</span></div>
           <h3>Grid-forming control of a three-level T-type inverter</h3>
           <p>Grid-forming control for distributed generation, modelled in MATLAB/Simulink. I designed the full control chain: P–ω / Q–V droop control, cascaded voltage and current loops in the dq frame with an LCL filter, and three-level space-vector modulation, with active neutral-point balancing by zero-sequence injection.</p>
           <p>The converter runs islanded or grid-connected, with pre-synchronisation and a synchrocheck. To ride through voltage sags, phase jumps, frequency deviations and faults, it uses a threshold-based virtual impedance, a current limiter and an active-power limiter, evaluated through a structured set of simulation test cases.</p>
-          <div class="stack"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Droop control</span><span class="tag">dq control</span><span class="tag">3-level SVPWM</span><span class="tag">LCL filter</span><span class="tag">Microgrids</span></div>
+          <div class="tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Droop control</span><span class="tag">dq control</span><span class="tag">3-level SVPWM</span><span class="tag">LCL filter</span><span class="tag">Microgrids</span></div>
         </div>
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
-            <path d="M14 75h252" stroke="#CDD6E0"/>
-            <path d="M14 75 C 40 20, 60 20, 84 75 S 128 130, 154 75 S 198 20, 222 75 S 250 120, 266 90" stroke="#0065A8"/>
-            <path d="M14 75 C 40 35, 60 35, 84 75 S 128 115, 154 75 S 198 35, 222 75 S 250 110, 266 92" stroke="#F7901E" stroke-dasharray="4 4"/>
-            <text x="16" y="140" font-family="IBM Plex Sans" font-size="11.5" fill="#4A5868" stroke="none">reference and inverter voltage</text>
-          </svg>
-        </div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
+          <path class="g" d="M14 75h252"/>
+          <path class="c draw" d="M14 75C40 20 60 20 84 75S128 130 154 75S198 20 222 75S250 120 266 90"/>
+          <path class="a" d="M14 75C40 35 60 35 84 75S128 115 154 75S198 35 222 75S250 110 266 92" stroke-dasharray="4 4"/>
+          <text x="16" y="140" style="font:400 11.5px 'IBM Plex Sans',Arial;fill:#93A5BA">reference and inverter voltage</text></svg></div>
       </article>
 
-      <article class="proj">
-        <div class="kind"><strong>Semester project</strong>École Polytechnique de Sousse</div>
+      <article class="proj rv">
         <div>
+          <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span></div>
           <h3>Hybrid Marine Platform</h3>
-          <p>A floating prototype that harvests wave and tidal energy. A linear wave generator with a magnet levitating between repelling neodymium magnets, and a small tidal turbine under the float, each with its own circuit. We designed the PCB and the 3D-printed generator tube ourselves. Supervised by Mr. Hichem Kessraoui; an IEEE-format paper is in preparation.</p>
-          <div class="stack"><span class="tag">Renewable energy</span><span class="tag">PCB design</span><span class="tag">3D printing</span><span class="tag">Prototyping</span></div>
+          <p>A floating prototype that harvests wave and tidal energy: a linear wave generator whose magnet levitates between repelling neodymium magnets, and a small tidal turbine under the float, each with its own circuit. We designed the PCB and the 3D-printed generator tube ourselves. Supervised by Mr. Hichem Kessraoui; an IEEE-format paper is in preparation.</p>
+          <div class="tags"><span class="tag">Renewable energy</span><span class="tag">PCB design</span><span class="tag">3D printing</span><span class="tag">Prototyping</span></div>
         </div>
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 62c20-12 40-12 60 0s40 12 60 0 40-12 60 0 40 12 60 0 40-12 30-6" stroke="#0065A8"/>
-            <rect x="122" y="38" width="36" height="22" rx="4" stroke="#13212F"/><path d="M140 38V12" stroke="#13212F"/><rect x="134" y="12" width="12" height="20" rx="3" stroke="#F7901E"/>
-            <path d="M140 60v62" stroke="#13212F"/><circle cx="140" cy="122" r="4" stroke="#13212F"/><path d="M140 122l-14-10M140 122l14-10M140 122v16" stroke="#13212F"/>
-          </svg>
-        </div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path class="c draw" d="M10 62c20-12 40-12 60 0s40 12 60 0 40-12 60 0 40 12 60 0 40-12 30-6"/>
+          <rect class="k" x="122" y="38" width="36" height="22" rx="4"/><path class="k" d="M140 38V12"/><rect class="a" x="134" y="12" width="12" height="20" rx="3"/>
+          <path class="k draw" d="M140 60v62"/><circle class="k" cx="140" cy="122" r="4"/><path class="k" d="M140 122l-14-10M140 122l14-10M140 122v16"/></svg></div>
       </article>
 
-      <article class="proj">
-        <div class="kind"><strong>Semester project</strong>École Polytechnique de Sousse</div>
+      <article class="proj rv">
         <div>
+          <div class="meta"><b>Semester project</b><span>École Polytechnique de Sousse</span></div>
           <h3>Industrial automation with Siemens TIA Portal</h3>
           <p>PLC programming of an automated process in Siemens TIA Portal.</p>
-          <div class="stack"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC</span><span class="tag">Industrial automation</span></div>
+          <div class="tags"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC</span><span class="tag">Industrial automation</span></div>
         </div>
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 280 150" fill="none" stroke="#13212F" stroke-width="2" stroke-linecap="round">
-            <path d="M24 20v110M256 20v110"/>
-            <path d="M24 45h40M64 35v20M76 35v20M76 45h80M156 35v20M168 35v20M168 45h50"/><circle cx="232" cy="45" r="12"/><path d="M244 45h12"/>
-            <path d="M24 100h40M64 90v20M76 90v20M76 100h142"/><circle cx="232" cy="100" r="12" stroke="#F7901E"/><path d="M244 100h12"/>
-          </svg>
-        </div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
+          <path class="k" d="M24 20v110M256 20v110"/>
+          <path class="k draw" d="M24 45h40M64 35v20M76 35v20M76 45h80M156 35v20M168 35v20M168 45h50"/><circle class="k" cx="232" cy="45" r="12"/><path class="k" d="M244 45h12"/>
+          <path class="k draw" d="M24 100h40M64 90v20M76 90v20M76 100h142"/><circle class="a" cx="232" cy="100" r="12"/><path class="k" d="M244 100h12"/></svg></div>
       </article>
 
-      <article class="proj">
-        <div class="kind"><strong>Course project</strong>Dependability and maintenance</div>
+      <article class="proj rv">
         <div>
+          <div class="meta"><b>Course project</b><span>Dependability and maintenance</span><span>with Wassim Bergaoui</span></div>
           <h3>Predictive maintenance of an electric pump</h3>
           <p>Analysis of the public SKAB dataset (Skoltech pump testbed) to detect abnormal operation from vibration, current and pressure signals, published in our team's maintenance portfolio.</p>
-          <div class="stack"><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span><span class="tag">Python</span></div>
+          <div class="tags"><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span><span class="tag">Python</span></div>
         </div>
-        <div class="vis" aria-hidden="true">
-          <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 100l20-6 20 4 20-8 20 6 20-5 20 3 20-7 20 5 14-40 12 52 20-4 20 3 20-6" stroke="#0065A8"/>
-            <circle cx="228" cy="52" r="14" stroke="#F7901E"/><path d="M14 132h252" stroke="#CDD6E0"/>
-          </svg>
-        </div>
+        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path class="c draw" d="M14 100l20-6 20 4 20-8 20 6 20-5 20 3 20-7 20 5 14-40 12 52 20-4 20 3 20-6"/>
+          <circle class="a" cx="228" cy="52" r="14"/><path class="g" d="M14 132h252"/></svg></div>
       </article>
-
     </div>
   </div>
 </section>
 
-<section id="experience" aria-labelledby="exp-title" style="padding-top:20px">
+<section id="experience" aria-labelledby="ex-title" style="background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
-    <h2 id="exp-title">Experience</h2>
-    <ol class="tl">
-      <li>
+    <div class="head"><div><div class="kicker rv">Experience</div><h2 id="ex-title" class="rv" style="--i:1">Where I've worked</h2></div></div>
+    <div style="position:relative">
+    <ol class="timeline" id="timeline">
+      <li class="rv"><span class="dot" aria-hidden="true"></span>
+        <span class="when">Jun 2026 – present</span>
         <h3>Control and power engineer, research internship</h3>
-        <p class="org">Laboratory of Advanced Technology and Intelligent Systems (LATIS), ENISO · Jun 2026 – present</p>
-        <p>Master's thesis on grid-forming control of a three-level T-type inverter in MATLAB/Simulink: droop control, cascaded dq loops, three-level SVPWM, neutral-point balancing, grid synchronisation and fault ride-through.</p>
-      </li>
-      <li>
-        <h3>Embedded systems intern, bachelor's final-year project</h3>
-        <p class="org">LEONI Wiring Systems Tunisia · Feb – Jun 2024</p>
-        <p>Designed and built an RFID-based tool management system on a Raspberry Pi 4B, with Python software, Firebase Realtime Database, electromagnetic locks, SMS alerts and preventive maintenance.</p>
-      </li>
-      <li>
-        <h3>Summer internship, residential electrical design</h3>
+        <p class="org">Laboratory of Advanced Technology and Intelligent Systems (LATIS), ENISO</p>
+        <p>Master's thesis on grid-forming control of a three-level T-type inverter in MATLAB/Simulink: droop control, cascaded dq loops, three-level SVPWM, neutral-point balancing, grid synchronisation and fault ride-through.</p></li>
+      <li class="rv"><span class="dot" aria-hidden="true"></span>
+        <span class="when">Summer internship</span>
+        <h3>Residential electrical design intern</h3>
         <p class="org">Ouerdani Electricity Corporation, Akouda</p>
-        <p>Took part in the electrical design of a villa: lighting and socket layouts, power balance, cable sizing and circuit-breaker panel layout.</p>
-      </li>
+        <p>Took part in the electrical design of a villa: lighting and socket layouts, power balance, cable sizing and circuit-breaker panel layout.</p></li>
+      <li class="rv"><span class="dot" aria-hidden="true"></span>
+        <span class="when">Feb – Jun 2024</span>
+        <h3>Embedded systems intern, bachelor's final-year project</h3>
+        <p class="org">LEONI Wiring Systems Tunisia</p>
+        <p>Designed and built an RFID-based tool management system on a Raspberry Pi 4B, with Python software, Firebase Realtime Database, electromagnetic locks, SMS alerts and preventive maintenance.</p></li>
     </ol>
+    <span class="tl-rail" aria-hidden="true"></span><span class="tl-fill" id="tlfill" aria-hidden="true"></span>
+    </div>
   </div>
 </section>
 
-<section id="skills" aria-labelledby="sk-title" style="padding-top:20px">
+<section id="skills" aria-labelledby="sk-title">
   <div class="wrap">
-    <h2 id="sk-title">Skills</h2>
+    <div class="head"><div><div class="kicker rv">Skills</div><h2 id="sk-title" class="rv" style="--i:1">What I work with</h2></div></div>
     <div class="skills">
-      <div><h3>Automation</h3><ul><li>Siemens TIA Portal</li><li>PLC programming</li><li>Industrial automation</li></ul></div>
-      <div><h3>Control &amp; power</h3><ul><li>MATLAB / Simulink</li><li>PID and cascaded control</li><li>Droop control, dq-frame control</li><li>Power electronics, three-level SVPWM</li><li>Microgrids, grid-forming inverters</li></ul></div>
-      <div><h3>Embedded &amp; IoT</h3><ul><li>ESP32, Arduino, Raspberry Pi</li><li>C/C++, Python</li><li>MQTT, Docker, Firebase</li><li>RFID, sensors, relays, locks</li></ul></div>
-      <div><h3>Energy</h3><ul><li>Clean energy, distributed generation</li><li>Renewable energy (wave, tidal)</li><li>PCB design, prototyping</li></ul></div>
-      <div><h3>Electrical installations</h3><ul><li>Lighting and socket layouts</li><li>Power balance, cable sizing</li><li>Low-voltage distribution panels</li></ul></div>
-      <div><h3>Tools &amp; methods</h3><ul><li>VS Code, GitHub</li><li>LaTeX, technical writing</li><li>Predictive maintenance, data analysis</li></ul></div>
+      <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M3 9h5M3 14h5M11 9h7v4h-7z"/></svg>Automation</h3><div class="tags"><span class="tag">Siemens TIA Portal</span><span class="tag">PLC programming</span><span class="tag">Industrial automation</span></div></div>
+      <div class="sk rv" style="--i:1"><h3><svg viewBox="0 0 24 24"><path d="M3 17h4l3-10 4 10h7M14 5v3"/></svg>Control &amp; power</h3><div class="tags"><span class="tag">MATLAB / Simulink</span><span class="tag">Droop control</span><span class="tag">dq-frame control</span><span class="tag">PID</span><span class="tag">3-level SVPWM</span><span class="tag">Microgrids</span></div></div>
+      <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/></svg>Embedded &amp; IoT</h3><div class="tags"><span class="tag">ESP32</span><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">RFID</span><span class="tag">MQTT</span><span class="tag">Docker</span><span class="tag">Firebase</span></div></div>
+      <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><path d="M12 13v8M9 21h6M12 11l-1-8M13 12l7 4M11 12l-7 4"/><circle cx="12" cy="11" r="1.5"/></svg>Energy</h3><div class="tags"><span class="tag">Clean energy</span><span class="tag">Distributed generation</span><span class="tag">Wave and tidal energy</span><span class="tag">PCB design</span><span class="tag">Prototyping</span></div></div>
+      <div class="sk rv" style="--i:1"><h3><svg viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg>Electrical installations</h3><div class="tags"><span class="tag">Lighting and socket layouts</span><span class="tag">Power balance</span><span class="tag">Cable sizing</span><span class="tag">LV distribution panels</span></div></div>
+      <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>Tools &amp; methods</h3><div class="tags"><span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">LaTeX</span><span class="tag">Technical writing</span><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span></div></div>
     </div>
 
-    <h2 style="margin-top:80px">Education</h2>
+    <div class="head" style="margin:96px 0 46px"><div><div class="kicker rv">Education</div><h2 class="rv" style="--i:1">Where I study</h2></div></div>
     <div class="edu">
-      <div><h3>École Polytechnique de Sousse</h3><p>Engineering degree, electrical and automation engineering</p><p class="when">2025 – present</p></div>
-      <div><h3>ISSAT Sousse</h3><p>Master's degree, sustainable mobility and clean energy</p><p class="when">2024 – present</p></div>
-      <div><h3>ISSAT Sousse</h3><p>Bachelor's degree, embedded systems</p><p class="when">2020 – 2024</p></div>
+      <div class="ed rv" style="--i:0"><span class="when">2025 – present</span><h3>École Polytechnique de Sousse</h3><p>Engineering degree, electrical and automation engineering</p></div>
+      <div class="ed rv" style="--i:1"><span class="when">2024 – present</span><h3>ISSAT Sousse</h3><p>Master's degree, sustainable mobility and clean energy</p></div>
+      <div class="ed rv" style="--i:2"><span class="when">2020 – 2024</span><h3>ISSAT Sousse</h3><p>Bachelor's degree, embedded systems</p></div>
     </div>
   </div>
 </section>
 
 <section class="contact" id="contact" aria-labelledby="ct-title">
   <div class="wrap">
-    <h2 id="ct-title">Let's talk about your PFE internship</h2>
-    <p style="margin:16px 0 26px">I'm looking for a final-year internship in industrial automation, control, embedded or IoT systems, or energy. I'd be glad to discuss your project.</p>
-    <div class="cta">
-      <a class="btn primary" href="mailto:khalil.saidi@polytechnicien.tn">Email me</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    <h2 id="ct-title"><span class="mask" style="--i:0"><span>Let's build your</span></span><span class="mask" style="--i:1"><span>next project</span></span></h2>
+    <p class="intro rv">I'm looking for a final-year (PFE) internship in industrial automation, control, embedded and IoT systems, or energy.</p>
+    <div class="cta rv" style="--i:1">
+      <a class="btn primary mag" href="mailto:khalil.saidi@polytechnicien.tn">Email me</a>
+      <a class="btn ghost mag" href="https://www.linkedin.com/in/khalilsaidi" target="_blank" rel="noopener">Connect on LinkedIn</a>
     </div>
+    <span class="mail rv" style="--i:2">khalil.saidi@polytechnicien.tn</span>
   </div>
 </section>
 
-<footer><div class="wrap">© 2026 Khalil Saidi · Sousse, Tunisia</div></footer>
+<footer><div class="wrap"><span>© 2026 Khalil Saidi</span><span>Sousse, Tunisia</span></div></footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  requestAnimationFrame(() => setTimeout(() => {
+    document.querySelector('.hero').classList.add('loaded');
+    $$('.hero .rv').forEach(el => el.classList.add('in'));
+  }, 60));
+
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    if (e.target.matches('#ct-title')) e.target.closest('section').classList.add('loaded');
+    io.unobserve(e.target);
+  }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
+  $$('.rv').forEach(el => { if (!el.closest('.hero')) io.observe(el); });
+  io.observe($('#ct-title'));
+  if (reduce) { $$('.rv').forEach(el => el.classList.add('in')); $$('section,.hero').forEach(s => s.classList.add('loaded')); }
+
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    if (reduce) return;
+    const el = e.target, end = +el.dataset.count, dec = +el.dataset.dec, unit = el.dataset.unit, t0 = performance.now(), d = 1400;
+    const step = t => { const k = Math.min(1, (t - t0) / d), v = end * (1 - Math.pow(1 - k, 3));
+      el.textContent = v.toFixed(dec) + unit; if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  }), { threshold: .6 });
+  $$('[data-count]').forEach(el => cio.observe(el));
+
+  const nav = $('#nav'), bar = $('#progress'), links = $$('nav ul a');
+  const secs = links.map(a => $(a.getAttribute('href')));
+  const tl = $('#timeline'), fill = $('#tlfill'), items = $$('#timeline li');
+  const onScroll = () => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('solid', y > 30);
+    bar.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+    let cur = -1; secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * .4) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('on', i === cur));
+    const r = tl.getBoundingClientRect(), mid = innerHeight * .62;
+    fill.style.transform = `scaleY(${Math.max(0, Math.min(1, (mid - r.top) / r.height))})`;
+    items.forEach(li => li.classList.toggle('lit', li.getBoundingClientRect().top + 14 < mid));
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  $$('.proj').forEach(c => c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px');
+  }));
+
+  if (!reduce && matchMedia('(pointer:fine)').matches) $$('.mag').forEach(b => {
+    b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect();
+      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px,${(e.clientY - r.top - r.height / 2) * .28}px)`; });
+    b.addEventListener('pointerleave', () => b.style.transform = '');
+  });
+
+  /* hero oscilloscope: three-phase waveforms on a graticule */
+  const cv = $('#scope'), ctx = cv.getContext('2d');
+  let W, H, mx = .5, my = .5, t = 0, raf = 0;
+  const size = () => { const dpr = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+  const cols = ['67,201,240', '37,132,216', '255,173,77'];
+  const frame = () => {
+    ctx.clearRect(0, 0, W, H);
+    const g = 48; ctx.strokeStyle = 'rgba(42,67,98,.3)'; ctx.lineWidth = 1; ctx.beginPath();
+    for (let x = (W % g) / 2; x < W; x += g) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+    for (let y = (H % g) / 2; y < H; y += g) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+    ctx.stroke();
+    const cy = H * (.58 + (my - .5) * .06), A = Math.min(H * .16, 120), k = 2 * Math.PI / Math.max(W * .55, 420);
+    for (let p = 0; p < 3; p++) {
+      const ph = p * 2 * Math.PI / 3; ctx.beginPath();
+      for (let x = 0; x <= W; x += 4) {
+        const env = .65 + .35 * Math.sin(x / W * Math.PI);
+        const y = cy + A * env * Math.sin(k * x - t + ph + (mx - .5) * .8);
+        x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      }
+      ctx.strokeStyle = `rgba(${cols[p]},${p === 2 ? .4 : .55})`; ctx.lineWidth = p === 0 ? 2 : 1.5;
+      ctx.shadowColor = `rgba(${cols[p]},.8)`; ctx.shadowBlur = 10; ctx.stroke(); ctx.shadowBlur = 0;
+    }
+  };
+  const loop = () => { frame(); t += .012; raf = requestAnimationFrame(loop); };
+  size(); addEventListener('resize', () => { size(); if (reduce) frame(); });
+  addEventListener('pointermove', e => { mx = e.clientX / innerWidth; my = e.clientY / innerHeight; }, { passive: true });
+  if (reduce) frame();
+  else new IntersectionObserver(([e]) => { cancelAnimationFrame(raf); if (e.isIntersecting) loop(); }).observe(cv);
+})();
+</script>
 </body>
 </html>
