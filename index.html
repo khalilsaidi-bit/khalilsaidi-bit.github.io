@@ -247,6 +247,14 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .lightbox img{max-width:min(92vw,900px);max-height:88vh;border-radius:12px;background:#fff;transform:scale(.94);transition:transform .45s var(--ease)}
 .lightbox.open img{transform:none}
 .lightbox button{position:absolute;top:18px;right:22px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--bg-2);color:var(--text);font-size:22px;cursor:pointer}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.kpis div{padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(7,14,24,.5)}
+.kpis b{display:block;font:850 28px/1.1 var(--display);font-stretch:110%;background:linear-gradient(120deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.kpis span{font-size:13.5px;color:var(--dim);line-height:1.45;display:block}
+@media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}}
+.fig-strip.wide-strip{grid-auto-columns:minmax(300px,1fr)}
+.fig-card.wide-card img{aspect-ratio:16/10;object-fit:contain;background:#fff}
 </style>
 </head>
 <body>
@@ -415,19 +423,31 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
           <path class="k" d="M100 75h20M160 75h25"/><circle cx="140" cy="118" r="5" fill="#FFAD4D"/></svg></div>
       </article>
 
-      <article class="proj rv">
+      <article class="proj wide rv">
         <div>
-          <div class="meta"><b>Research master's thesis</b><span>LATIS laboratory, ENISO</span><span>Jun 2026 – present</span></div>
+          <div class="meta"><b>Research master's thesis</b><span>ISSAT Sousse, LATIS laboratory (ENISO)</span><span>2025 – 2026</span><span>supervised by Mr. Faycel Jellali</span></div>
           <h3>Grid-forming control of a three-level T-type inverter</h3>
-          <p>Grid-forming control for distributed generation, modelled in MATLAB/Simulink. I designed the full control chain: P–ω / Q–V droop control, cascaded voltage and current loops in the dq frame with an LCL filter, and three-level space-vector modulation, with active neutral-point balancing by zero-sequence injection.</p>
-          <p>The converter runs islanded or grid-connected, with pre-synchronisation and a synchrocheck. To ride through voltage sags, phase jumps, frequency deviations and faults, it uses a threshold-based virtual impedance, a current limiter and an active-power limiter, evaluated through a structured set of simulation test cases.</p>
-          <div class="tags"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Droop control</span><span class="tag">dq control</span><span class="tag">3-level SVPWM</span><span class="tag">LCL filter</span><span class="tag">Microgrids</span></div>
+          <p>As inverter-based sources replace rotating machines, microgrids lose the inertia that used to hold their voltage and frequency. My thesis asks whether droop control with filtered powers lets a 10 kVA, 400 V three-level T-type inverter, connected through an LCL filter, form a clean voltage on its own, couple smoothly to a weak grid (short-circuit ratio 3) and stay stable through setpoint changes and grid disturbances.</p>
+          <div class="cols2">
+            <ul class="list">
+              <li>Full control chain in MATLAB/Simulink, sampled at 25 µs: P–ω / Q–V droop equivalent to a virtual synchronous machine (H ≈ 0.8 s), cascaded PI voltage and current loops in the dq frame, three-level SVPWM at 40 kHz with neutral-point balancing.</li>
+              <li>Pre-synchronisation and synchrocheck for grid coupling, and three protections: a 30 A current limiter, a threshold-based virtual impedance and a ±9.5 kW active-power limiter.</li>
+            </ul>
+            <ul class="list">
+              <li>21 simulation test cases, all run with the final control: islanded, coupling and islanding, grid-connected.</li>
+              <li>Synchronism kept without a PLL through 20° and 60° phase jumps and 150 ms three-phase and single-phase faults; unintentional islanding ridden through without a mode change.</li>
+            </ul>
+          </div>
+          <div class="kpis">
+            <div><b>1.8 %</b><span>voltage THD in islanded mode (1.0 % for current)</span></div>
+            <div><b>±8.7°</b><span>phase error at breaker closing, coupling current below 80 % of rated peak</span></div>
+            <div><b>&lt; 0.2 s</b><span>for active power to reach its setpoint, with no overshoot</span></div>
+            <div><b>1.1 %</b><span>at the coupling point for a 10 % grid voltage sag</span></div>
+          </div>
+          <p class="ctx" style="margin-top:14px">Results from simulation only, with an ideal DC bus and lossless switches; the thesis sets out the limits and the path to hardware-in-the-loop and a reduced-power prototype.</p>
+          <div class="tags"><span class="tag">MATLAB / Simulink</span><span class="tag">Grid-forming</span><span class="tag">Droop control</span><span class="tag">Virtual synchronous machine</span><span class="tag">dq control</span><span class="tag">3-level SVPWM</span><span class="tag">LCL filter</span><span class="tag">Fault ride-through</span></div>
         </div>
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
-          <path class="g" d="M14 75h252"/>
-          <path class="c draw" d="M14 75C40 20 60 20 84 75S128 130 154 75S198 20 222 75S250 120 266 90"/>
-          <path class="a" d="M14 75C40 35 60 35 84 75S128 115 154 75S198 35 222 75S250 110 266 92" stroke-dasharray="4 4"/>
-          <text x="16" y="140" style="font:400 11.5px 'IBM Plex Sans',Arial;fill:#93A5BA">reference and inverter voltage</text></svg></div>
+        <div class="fig-strip-wrap"><p class="strip-label">Figures from my thesis defence (in French) — select one to enlarge</p><div class="fig-strip wide-strip"><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-control.jpg" aria-label="Enlarge: Control architecture, sampled every 25 µs"><img src="assets/gf-fig-control.jpg" alt="Control architecture, sampled every 25 µs" loading="lazy"><span>Control architecture, sampled every 25 µs</span></button><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-system.jpg" aria-label="Enlarge: Studied system: T-type inverter, LCL filter, local load, line and weak grid"><img src="assets/gf-fig-system.jpg" alt="Studied system: T-type inverter, LCL filter, local load, line and weak grid" loading="lazy"><span>Studied system: T-type inverter, LCL filter, local load, line and weak grid</span></button><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-ttype.jpg" aria-label="Enlarge: Three-level T-type inverter: three legs on the P, O, N bus"><img src="assets/gf-fig-ttype.jpg" alt="Three-level T-type inverter: three legs on the P, O, N bus" loading="lazy"><span>Three-level T-type inverter: three legs on the P, O, N bus</span></button><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-svpwm.jpg" aria-label="Enlarge: Three-level space-vector modulation: sectors and reference vector"><img src="assets/gf-fig-svpwm.jpg" alt="Three-level space-vector modulation: sectors and reference vector" loading="lazy"><span>Three-level space-vector modulation: sectors and reference vector</span></button><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-loadstep.jpg" aria-label="Enlarge: Islanded load step: active power, droop frequency and RMS voltage"><img src="assets/gf-fig-loadstep.jpg" alt="Islanded load step: active power, droop frequency and RMS voltage" loading="lazy"><span>Islanded load step: active power, droop frequency and RMS voltage</span></button><button class="fig-card wide-card" type="button" data-full="assets/gf-fig-fault.jpg" aria-label="Enlarge: 150 ms three-phase fault: current held at its limit, synchronism kept"><img src="assets/gf-fig-fault.jpg" alt="150 ms three-phase fault: current held at its limit, synchronism kept" loading="lazy"><span>150 ms three-phase fault: current held at its limit, synchronism kept</span></button></div></div>
       </article>
 
       <article class="proj wide rv">
