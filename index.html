@@ -109,7 +109,7 @@ nav ul a:hover{color:var(--blue)}
 .proj .kind strong{display:block;color:var(--blue);font-weight:600;font-size:15px}
 .proj h3{margin-bottom:10px}
 .proj p{color:var(--ink-2)}
-.proj .vis{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:170px;display:flex;align-items:center;justify-content:center;padding:14px}
+.proj .vis{align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:170px;display:flex;align-items:center;justify-content:center;padding:14px}
 .proj .vis svg{width:100%;height:auto}
 @media(max-width:980px){.proj{grid-template-columns:1fr;gap:14px}.proj .vis{max-width:420px}}
 
@@ -130,11 +130,12 @@ nav ul a:hover{color:var(--blue)}
 @media(max-width:860px){.skills{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.skills{grid-template-columns:1fr}}
 
-.edu{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+.edu .when{margin-top:10px;font-weight:600;color:var(--blue)}
 .edu div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px}
 .edu h3{font-size:21px;margin-bottom:6px}
 .edu p{color:var(--ink-2);margin:0}
-@media(max-width:760px){.edu{grid-template-columns:1fr}}
+@media(max-width:900px){.edu{grid-template-columns:1fr}}
 
 .contact{background:var(--blue);color:#fff}
 .contact h2{color:#fff}
@@ -166,7 +167,7 @@ footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
       <img class="portrait" src="assets/khalil-saidi.jpg" alt="Portrait of Khalil Saidi" width="132" height="132">
       <h1>Khalil<br>Saidi</h1>
       <p class="role">Electrical and automation engineering student at École Polytechnique de Sousse</p>
-      <p class="lede">I build systems that measure, decide and act: PLC programs, embedded and IoT nodes, and control of power converters for microgrids.</p>
+      <p class="lede">I build systems that measure, decide and act: PLC programs, embedded and IoT nodes, and grid-forming control of power converters.</p>
       <div class="status"><span class="led" aria-hidden="true"></span>Looking for a final-year (PFE) internship in 2027</div>
       <div class="cta">
         <a class="btn primary" href="#projects">See my projects</a>
@@ -299,11 +300,12 @@ footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
     <div class="plist">
 
       <article class="proj">
-        <div class="kind"><strong>Final-year internship project</strong>LEONI</div>
+        <div class="kind"><strong>Bachelor's final-year internship</strong>LEONI Wiring Systems Tunisia<br>Feb – Jun 2024</div>
         <div>
-          <h3>Smart cabinet with RFID access</h3>
-          <p>A cabinet that opens only for authorised badges. A Raspberry Pi reads the RFID tag, checks the user's rights and unlocks the door; every access is logged in a real-time database for traceability.</p>
-          <div class="stack"><span class="tag">Raspberry Pi</span><span class="tag">RFID</span><span class="tag">Python</span><span class="tag">Real-time database</span><span class="tag">Access control</span></div>
+          <h3>Smart tool cabinet with RFID access</h3>
+          <p>An intelligent management system for the cable-tie guns used in automotive wiring production. Operators authenticate with an RFID badge; a Raspberry Pi 4B unlocks the matching electromagnetic lock and logs every tool operation in real time.</p>
+          <p>I wrote the embedded software in Python and used Firebase Realtime Database for user management, data storage and live monitoring. The system also sends SMS alerts and supports preventive maintenance, improving traceability, reducing tool loss and tightening inventory control.</p>
+          <div class="stack"><span class="tag">Raspberry Pi 4B</span><span class="tag">RFID RC522</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Relays and electromagnetic locks</span><span class="tag">LCD</span><span class="tag">SMS alerts</span></div>
         </div>
         <div class="vis" aria-hidden="true">
           <svg viewBox="0 0 280 150" fill="none" stroke="#13212F" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
@@ -316,11 +318,12 @@ footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
       </article>
 
       <article class="proj">
-        <div class="kind"><strong>Research master's</strong>LATIS laboratory, ENISO</div>
+        <div class="kind"><strong>Research master's thesis</strong>LATIS laboratory, ENISO<br>Jun 2026 – present</div>
         <div>
-          <h3>Grid-forming converter control for AC microgrids</h3>
-          <p>Modelling and control of a grid-forming inverter in MATLAB/Simulink: cascaded voltage and current loops, SVPWM modulation and protection functions (current limiter, virtual impedance, power limiter), tested under grid disturbances.</p>
-          <div class="stack"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Power electronics</span><span class="tag">Control systems</span><span class="tag">Microgrids</span></div>
+          <h3>Grid-forming control of a three-level T-type inverter</h3>
+          <p>Grid-forming control for distributed generation, modelled in MATLAB/Simulink. I designed the full control chain: P–ω / Q–V droop control, cascaded voltage and current loops in the dq frame with an LCL filter, and three-level space-vector modulation, with active neutral-point balancing by zero-sequence injection.</p>
+          <p>The converter runs islanded or grid-connected, with pre-synchronisation and a synchrocheck. To ride through voltage sags, phase jumps, frequency deviations and faults, it uses a threshold-based virtual impedance, a current limiter and an active-power limiter, evaluated through a structured set of simulation test cases.</p>
+          <div class="stack"><span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">Droop control</span><span class="tag">dq control</span><span class="tag">3-level SVPWM</span><span class="tag">LCL filter</span><span class="tag">Microgrids</span></div>
         </div>
         <div class="vis" aria-hidden="true">
           <svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linecap="round">
@@ -388,14 +391,14 @@ footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
     <h2 id="exp-title">Experience</h2>
     <ol class="tl">
       <li>
-        <h3>Control and power engineering, research master's</h3>
-        <p class="org">Laboratory of Advanced Technology and Intelligent Systems (LATIS), ENISO</p>
-        <p>Grid-forming inverter control for AC microgrids in MATLAB/Simulink: control loop design, protection strategies and validation under disturbances.</p>
+        <h3>Control and power engineer, research internship</h3>
+        <p class="org">Laboratory of Advanced Technology and Intelligent Systems (LATIS), ENISO · Jun 2026 – present</p>
+        <p>Master's thesis on grid-forming control of a three-level T-type inverter in MATLAB/Simulink: droop control, cascaded dq loops, three-level SVPWM, neutral-point balancing, grid synchronisation and fault ride-through.</p>
       </li>
       <li>
-        <h3>Final-year internship, embedded systems</h3>
-        <p class="org">LEONI</p>
-        <p>Designed a smart cabinet with RFID access, driven by a Raspberry Pi and logging every access in a real-time database.</p>
+        <h3>Embedded systems intern, bachelor's final-year project</h3>
+        <p class="org">LEONI Wiring Systems Tunisia · Feb – Jun 2024</p>
+        <p>Designed and built an RFID-based tool management system on a Raspberry Pi 4B, with Python software, Firebase Realtime Database, electromagnetic locks, SMS alerts and preventive maintenance.</p>
       </li>
       <li>
         <h3>Summer internship, residential electrical design</h3>
@@ -411,17 +414,18 @@ footer{padding:26px 0;font-size:14px;color:var(--ink-2)}
     <h2 id="sk-title">Skills</h2>
     <div class="skills">
       <div><h3>Automation</h3><ul><li>Siemens TIA Portal</li><li>PLC programming</li><li>Industrial automation</li></ul></div>
-      <div><h3>Control &amp; power</h3><ul><li>MATLAB / Simulink</li><li>PID and cascaded control</li><li>Power electronics, SVPWM</li><li>Microgrids, grid-forming inverters</li></ul></div>
-      <div><h3>Embedded &amp; IoT</h3><ul><li>ESP32, Arduino, Raspberry Pi</li><li>C/C++, Python</li><li>MQTT, Docker, Firebase</li><li>RFID, sensors and actuators</li></ul></div>
-      <div><h3>Energy</h3><ul><li>Renewable energy (wave, tidal)</li><li>PCB design, prototyping</li></ul></div>
+      <div><h3>Control &amp; power</h3><ul><li>MATLAB / Simulink</li><li>PID and cascaded control</li><li>Droop control, dq-frame control</li><li>Power electronics, three-level SVPWM</li><li>Microgrids, grid-forming inverters</li></ul></div>
+      <div><h3>Embedded &amp; IoT</h3><ul><li>ESP32, Arduino, Raspberry Pi</li><li>C/C++, Python</li><li>MQTT, Docker, Firebase</li><li>RFID, sensors, relays, locks</li></ul></div>
+      <div><h3>Energy</h3><ul><li>Clean energy, distributed generation</li><li>Renewable energy (wave, tidal)</li><li>PCB design, prototyping</li></ul></div>
       <div><h3>Electrical installations</h3><ul><li>Lighting and socket layouts</li><li>Power balance, cable sizing</li><li>Low-voltage distribution panels</li></ul></div>
       <div><h3>Tools &amp; methods</h3><ul><li>VS Code, GitHub</li><li>LaTeX, technical writing</li><li>Predictive maintenance, data analysis</li></ul></div>
     </div>
 
     <h2 style="margin-top:80px">Education</h2>
     <div class="edu">
-      <div><h3>École Polytechnique de Sousse</h3><p>Engineering degree in electrical and automation engineering, final year</p></div>
-      <div><h3>ISSAT Sousse</h3><p>Research master's in control and power engineering</p></div>
+      <div><h3>École Polytechnique de Sousse</h3><p>Engineering degree, electrical and automation engineering</p><p class="when">2025 – present</p></div>
+      <div><h3>ISSAT Sousse</h3><p>Master's degree, sustainable mobility and clean energy</p><p class="when">2024 – present</p></div>
+      <div><h3>ISSAT Sousse</h3><p>Bachelor's degree, embedded systems</p><p class="when">2020 – 2024</p></div>
     </div>
   </div>
 </section>
