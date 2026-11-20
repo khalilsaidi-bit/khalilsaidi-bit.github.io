@@ -257,6 +257,12 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 @media(max-width:900px){.kpis{grid-template-columns:1fr 1fr}}
 .fig-strip.wide-strip{grid-auto-columns:minmax(300px,1fr)}
 .fig-card.wide-card img{aspect-ratio:16/10;object-fit:contain;background:#fff}
+.fig-card.fit img{object-fit:contain;object-position:center;background:#fff}
+.leoni-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:22px}
+.leoni-gallery figure{margin:0}
+.leoni-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.leoni-gallery figcaption{font-size:13px;color:var(--mute);margin-top:8px;line-height:1.4}
+@media(max-width:780px){.leoni-gallery{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -410,19 +416,33 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <p class="intro rv" style="--i:2;margin:0;max-width:46ch">From an automotive plant to a research lab and the sea: hardware I built, code I wrote and controllers I designed.</p></div>
 
     <div class="projects">
-      <article class="proj rv">
+      <article class="proj wide rv">
         <div>
-          <div class="meta"><b>Bachelor's final-year internship</b><span>LEONI Wiring Systems Tunisia</span><span>Feb – Jun 2024</span></div>
+          <div class="meta"><b>Bachelor's final-year internship</b><span>LEONI Wiring Systems Tunisia, Sousse-Messadine</span><span>Feb – May 2024</span><span>with Aziz Ammari</span><span>supervised by Mr. Kilani Letaief (LEONI) and Mr. Mohamed Farjallah (ISSAT Sousse)</span></div>
           <h3>Smart tool cabinet with RFID access</h3>
-          <p>An intelligent management system for the cable-tie guns used in automotive wiring production. Operators authenticate with an RFID badge; a Raspberry Pi 4B unlocks the matching electromagnetic lock and logs every tool operation in real time.</p>
-          <p>I wrote the embedded software in Python and used Firebase Realtime Database for user management, data storage and live monitoring. The system also sends SMS alerts and supports preventive maintenance, improving traceability, reducing tool loss and tightening inventory control.</p>
-          <div class="tags"><span class="tag">Raspberry Pi 4B</span><span class="tag">RFID RC522</span><span class="tag">Python</span><span class="tag">Firebase</span><span class="tag">Electromagnetic locks</span><span class="tag">LCD</span><span class="tag">SMS alerts</span></div>
+          <p>In the wiring production area, the cable-tie guns used on every harness were stored in disorder: tools went missing without explanation, nobody knew who had taken which one, and operators lost time looking for them. In the technical production department, we designed a smart cabinet that makes every gun traceable: who took it, when, and whether it came back.</p>
+          <div class="cols2">
+            <ul class="list">
+              <li>An operator scans an RFID badge (RC522). If the badge is in the database, a Raspberry Pi 4B unlocks the cabinet door through a relay-driven electric lock and enables the keypad; otherwise the LCD shows that access is refused.</li>
+              <li>The operator types the number of the gun. Each gun sits on a metal plate held by a 15 kg electromagnet, which the Pi releases; a limit switch then confirms the gun has been taken and the LCD displays it.</li>
+              <li>Access rules by role: an operator may take one gun at a time, a quality inspector one or several, and a technician is refused.</li>
+            </ul>
+            <ul class="list">
+              <li>Every operation is written to a Firebase Realtime Database, with security rules on who can read and write. Adding a gun only takes its number and the pin of its electromagnet.</li>
+              <li>A gun not returned within 12 hours triggers an SMS to the team leader through a SIM800L module.</li>
+              <li>An RGB LED shows each gun's state: green when present, red when out, blue after 28 days of use, when it is due for preventive maintenance.</li>
+            </ul>
+          </div>
+          <p class="ctx" style="margin-top:6px">We wrote the embedded software in Python (Thonny), drew the wiring in Fritzing and designed a flowchart for each function. Next steps we proposed: a mobile app, biometric access and UWB tags to locate the guns in real time.</p>
+          <div class="tags"><span class="tag">Raspberry Pi 4B</span><span class="tag">Python</span><span class="tag">RFID RC522</span><span class="tag">Firebase Realtime Database</span><span class="tag">SIM800L SMS</span><span class="tag">Electromagnets and relays</span><span class="tag">Keypad and I2C LCD</span><span class="tag">Fritzing</span><span class="tag">Preventive maintenance</span></div>
         </div>
-        <div class="vis" aria-hidden="true"><svg viewBox="0 0 280 150" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
-          <rect class="k draw" x="20" y="15" width="80" height="120" rx="6"/><path class="k draw" d="M60 15v120"/><circle cx="52" cy="75" r="3" fill="#C9D6E4"/><circle cx="68" cy="75" r="3" fill="#C9D6E4"/>
-          <rect class="c draw" x="120" y="55" width="40" height="40" rx="5"/><path class="c" d="M128 75a12 12 0 0 1 24 0M132 75a8 8 0 0 1 16 0"/>
-          <rect class="k draw" x="185" y="45" width="78" height="56" rx="6"/><path class="g" d="M196 58h56M196 70h40M196 82h48"/>
-          <path class="k" d="M100 75h20M160 75h25"/><circle cx="140" cy="118" r="5" fill="#FFAD4D"/></svg></div>
+        <div class="leoni-gallery">
+          <figure><div class="shot"><img src="assets/leoni-rfid-scan.jpg" alt="An operator's RFID tag held against the RC522 reader of the prototype" loading="lazy"></div><figcaption>1. The operator scans an RFID badge.</figcaption></figure>
+          <figure><div class="shot"><img src="assets/leoni-door-open.jpg" alt="Prototype on the bench: the LCD reads Porte ouverte next to the electric lock" loading="lazy"></div><figcaption>2. Access granted: the lock opens, the LCD confirms.</figcaption></figure>
+          <figure><div class="shot"><img src="assets/leoni-keypad.jpg" alt="A hand typing a gun number on the keypad while the LCD asks to choose a number" loading="lazy"></div><figcaption>3. The gun number is typed on the keypad.</figcaption></figure>
+          <figure><div class="shot"><img src="assets/leoni-tool-taken.jpg" alt="Full prototype wired to the Raspberry Pi: keypad, RFID reader, LCD showing pistolet pris and the electromagnet" loading="lazy"></div><figcaption>4. The electromagnet releases the gun; the LCD logs it as taken.</figcaption></figure>
+        </div>
+        <div class="fig-strip-wrap"><p class="strip-label">Wiring and flowcharts from our internship report (in French) — select one to enlarge</p><div class="fig-strip"><button class="fig-card fit" type="button" data-full="assets/leoni-fig-overview.jpg" aria-label="Enlarge: System overview: RFID reader, keypad, LCD, lock, electromagnets, LED and SMS alerts around the Raspberry Pi"><img src="assets/leoni-fig-overview.jpg" alt="System overview: RFID reader, keypad, LCD, lock, electromagnets, LED and SMS alerts around the Raspberry Pi" loading="lazy"><span>System overview: RFID reader, keypad, LCD, lock, electromagnets, LED and SMS alerts around the Raspberry Pi</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-rfid-wiring.jpg" aria-label="Enlarge: Wiring of the RC522 RFID reader and the RGB LED to the Raspberry Pi"><img src="assets/leoni-fig-rfid-wiring.jpg" alt="Wiring of the RC522 RFID reader and the RGB LED to the Raspberry Pi" loading="lazy"><span>Wiring of the RC522 RFID reader and the RGB LED to the Raspberry Pi</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-lock-wiring.jpg" aria-label="Enlarge: Wiring of the electric lock through a 12 V relay"><img src="assets/leoni-fig-lock-wiring.jpg" alt="Wiring of the electric lock through a 12 V relay" loading="lazy"><span>Wiring of the electric lock through a 12 V relay</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-keypad-wiring.jpg" aria-label="Enlarge: Wiring of the keypad and the I2C LCD"><img src="assets/leoni-fig-keypad-wiring.jpg" alt="Wiring of the keypad and the I2C LCD" loading="lazy"><span>Wiring of the keypad and the I2C LCD</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-flow-id.jpg" aria-label="Enlarge: Flowchart: user identification by RFID badge"><img src="assets/leoni-fig-flow-id.jpg" alt="Flowchart: user identification by RFID badge" loading="lazy"><span>Flowchart: user identification by RFID badge</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-flow-select.jpg" aria-label="Enlarge: Flowchart: selecting and releasing a gun"><img src="assets/leoni-fig-flow-select.jpg" alt="Flowchart: selecting and releasing a gun" loading="lazy"><span>Flowchart: selecting and releasing a gun</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-flow-roles.jpg" aria-label="Enlarge: Flowchart: access rules for operators, quality inspectors and technicians"><img src="assets/leoni-fig-flow-roles.jpg" alt="Flowchart: access rules for operators, quality inspectors and technicians" loading="lazy"><span>Flowchart: access rules for operators, quality inspectors and technicians</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-flow-alert.jpg" aria-label="Enlarge: Flowchart: SMS alert when a gun is not returned within 12 hours"><img src="assets/leoni-fig-flow-alert.jpg" alt="Flowchart: SMS alert when a gun is not returned within 12 hours" loading="lazy"><span>Flowchart: SMS alert when a gun is not returned within 12 hours</span></button><button class="fig-card fit" type="button" data-full="assets/leoni-fig-flow-maint.jpg" aria-label="Enlarge: Flowchart: preventive maintenance after 28 days of use"><img src="assets/leoni-fig-flow-maint.jpg" alt="Flowchart: preventive maintenance after 28 days of use" loading="lazy"><span>Flowchart: preventive maintenance after 28 days of use</span></button></div></div>
       </article>
 
       <article class="proj wide rv">
@@ -578,7 +598,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
         <p class="org">Ouerdani Electricity Corporation, Akouda</p>
         <p>Took part in the electrical design of a villa: lighting and socket layouts, power balance, cable sizing and circuit-breaker panel layout.</p></li>
       <li class="rv"><span class="dot" aria-hidden="true"></span>
-        <span class="when">Feb – Jun 2024</span>
+        <span class="when">Feb – May 2024</span>
         <h3>Embedded systems intern, bachelor's final-year project</h3>
         <p class="org">LEONI Wiring Systems Tunisia</p>
         <p>Designed and built an RFID-based tool management system on a Raspberry Pi 4B, with Python software, Firebase Realtime Database, electromagnetic locks, SMS alerts and preventive maintenance.</p></li>
