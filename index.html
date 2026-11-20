@@ -228,7 +228,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .proj>*{min-width:0}
 .cols2{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin:20px 0 6px}
 @media(max-width:780px){.cols2{grid-template-columns:1fr}}
-.wide-shot{margin:6px 0 0}
+.wide-shot{margin:22px 0 0}
+.wide-shot video{width:100%;display:block}
+.wide-shot figcaption code,.list code{font-size:.9em}
 
 .pmh-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,250px));gap:14px;margin-top:6px}
 .pmh-gallery figure{margin:0}
@@ -474,6 +476,36 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
       <article class="proj wide rv">
         <div>
+          <div class="meta"><b>Robotics course lab, ROS 2</b><span>École Polytechnique de Sousse</span><span>Nov 2026</span><span>individual work</span><span>supervised by Mr. Mohamed Amine Bouzidi</span></div>
+          <h3>TurtleBot 3 control in simulation with ROS 2 Humble and Gazebo</h3>
+          <p>A mobile robot perceives, decides and acts through separate programs that must exchange data continuously. I set up a ROS 2 Humble environment from scratch on an Ubuntu 22.04 virtual machine, studied how a simulated TurtleBot 3 Burger is wired in ROS 2, then wrote my own Python package to drive it: one node follows a square in open loop, the other avoids obstacles from its LiDAR.</p>
+          <div class="cols2">
+            <ul class="list">
+              <li>Mapped the robot's ROS 2 graph: who publishes and subscribes to <code>/scan</code> (LaserScan), <code>/odom</code> (Odometry) and <code>/cmd_vel</code> (Twist). The LiDAR returns 360 rays at 1° resolution, 0.12 to 3.5 m, at about 4.5 Hz in the VM.</li>
+              <li>Drove the robot directly in velocity and checked the circular-path model R = v/ω: 0.1 m/s and 0.5 rad/s give R = 0.2 m.</li>
+              <li>Package <code>tp_turtlebot</code> (ament_python, built with colcon), node <code>carre</code>: a 1 m square in sixteen steps, driven by a 10 Hz timer on simulation time. Odometry measured an 8.4 cm closure error; I traced it to angle discretisation (88.8° per turn instead of 90°), inertia and wheel slip, and proposed a closed-loop version.</li>
+            </ul>
+            <ul class="list">
+              <li>Node <code>stop_obstacle</code>: a reactive avoidance behaviour that watches the minimum distance over a ±15° front cone rather than a single ray, since the robot is about 14 cm wide.</li>
+              <li>Invalid readings (inf, nan, 0) are treated as a clear path; the robot turns below 0.40 m and only moves on beyond 0.50 m, a hysteresis that stops it from hesitating at the threshold. It subscribes with the sensor-data QoS profile.</li>
+              <li>Analysed the limits: at 0.15 m/s the robot travels about 3 cm between two scans, and it always turns the same way; choosing the freer side would make avoidance faster.</li>
+            </ul>
+          </div>
+          <figure class="wide-shot"><div class="shot"><video src="assets/tb3-avoidance.mp4" poster="assets/tb3-avoidance-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Simulated TurtleBot 3 moving through turtlebot3_world in Gazebo, stopping before walls and pillars and turning away"></video></div><figcaption>The <code>stop_obstacle</code> node in turtlebot3_world: the robot stops before walls and pillars, turns and moves on (58 s demo).</figcaption></figure>
+          <div class="kpis">
+            <div><b>0</b><span>collisions in about three minutes of autonomous driving</span></div>
+            <div><b>13</b><span>avoidances in 168 s, obstacles detected between 0.38 and 0.40 m</span></div>
+            <div><b>8.4 cm</b><span>closure error of the open-loop square, about 2 % of the 4 m driven</span></div>
+            <div><b>±15°</b><span>front cone (31 rays) with a 0.40 / 0.50 m stop and resume hysteresis</span></div>
+          </div>
+          <p class="ctx" style="margin-top:14px">Fully simulated in Gazebo Classic 11; no physical robot was used. Deliverables: a 28-page technical report (in French), the ROS 2 package and the demo video.</p>
+          <div class="tags"><span class="tag">ROS 2 Humble</span><span class="tag">Gazebo</span><span class="tag">Python (rclpy)</span><span class="tag">colcon</span><span class="tag">QoS</span><span class="tag">rqt_graph</span><span class="tag">LiDAR</span><span class="tag">Odometry</span><span class="tag">Differential drive</span><span class="tag">Ubuntu 22.04</span></div>
+        </div>
+        <div class="fig-strip-wrap"><p class="strip-label">Figures from my lab report (in French) — select one to enlarge</p><div class="fig-strip wide-strip"><button class="fig-card wide-card" type="button" data-full="assets/tb3-fig-nodes.jpg" aria-label="Enlarge: My two nodes in the ROS 2 graph: solid lines are commands, dashed lines are measurements"><img src="assets/tb3-fig-nodes.jpg" alt="My two nodes in the ROS 2 graph: solid lines are commands, dashed lines are measurements" loading="lazy"><span>My two nodes in the ROS 2 graph: solid lines are commands, dashed lines are measurements</span></button><button class="fig-card wide-card" type="button" data-full="assets/tb3-fig-rqtgraph.jpg" aria-label="Enlarge: ROS 2 graph of the simulated TurtleBot 3, from rqt_graph"><img src="assets/tb3-fig-rqtgraph.jpg" alt="ROS 2 graph of the simulated TurtleBot 3, from rqt_graph" loading="lazy"><span>ROS 2 graph of the simulated TurtleBot 3, from rqt_graph</span></button><button class="fig-card wide-card" type="button" data-full="assets/tb3-fig-lidar.jpg" aria-label="Enlarge: LiDAR sweep in the empty world: 360 rays at 1° resolution"><img src="assets/tb3-fig-lidar.jpg" alt="LiDAR sweep in the empty world: 360 rays at 1° resolution" loading="lazy"><span>LiDAR sweep in the empty world: 360 rays at 1° resolution</span></button><button class="fig-card wide-card" type="button" data-full="assets/tb3-fig-world.jpg" aria-label="Enlarge: turtlebot3_world: the LiDAR rays stop on walls and pillars"><img src="assets/tb3-fig-world.jpg" alt="turtlebot3_world: the LiDAR rays stop on walls and pillars" loading="lazy"><span>turtlebot3_world: the LiDAR rays stop on walls and pillars</span></button><button class="fig-card wide-card" type="button" data-full="assets/tb3-fig-log.jpg" aria-label="Enlarge: stop_obstacle log: each detection and each restart"><img src="assets/tb3-fig-log.jpg" alt="stop_obstacle log: each detection and each restart" loading="lazy"><span>stop_obstacle log: each detection and each restart</span></button></div></div>
+      </article>
+
+      <article class="proj wide rv">
+        <div>
           <div class="meta"><b>Semester project and paper</b><span>École Polytechnique de Sousse</span><span>with Wassim Bergaoui</span><span>supervised by Mr. Hichem Kessraoui</span></div>
           <h3>Hybrid Marine Platform: wave and tidal energy on one axis</h3>
           <p>Offshore projects cut costs by sharing one foundation, mooring and cable between several converters. We applied that idea at student scale: a one-metre floating prototype carries a Faraday-lamp wave generator at the surface and a small tidal turbine near the seabed, each with its own circuit, on a single float, axis and ballast. The structure is made of PVC tubing and an extensible siphon that replaces a gimbal and a slide, and the purchased parts cost 111.5 TND. We are writing it up as an IEEE-format paper.</p>
@@ -563,7 +595,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
       <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 7V4M14 7V4M10 20v-3M14 20v-3M7 10H4M7 14H4M20 10h-3M20 14h-3"/></svg>Embedded &amp; IoT</h3><div class="tags"><span class="tag">ESP32</span><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">RFID</span><span class="tag">MQTT</span><span class="tag">Docker</span><span class="tag">Firebase</span></div></div>
       <div class="sk rv" style="--i:0"><h3><svg viewBox="0 0 24 24"><path d="M12 13v8M9 21h6M12 11l-1-8M13 12l7 4M11 12l-7 4"/><circle cx="12" cy="11" r="1.5"/></svg>Energy</h3><div class="tags"><span class="tag">Clean energy</span><span class="tag">Distributed generation</span><span class="tag">Wave and tidal energy</span><span class="tag">PCB design</span><span class="tag">Prototyping</span></div></div>
       <div class="sk rv" style="--i:1"><h3><svg viewBox="0 0 24 24"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg>Electrical installations</h3><div class="tags"><span class="tag">Lighting and socket layouts</span><span class="tag">Power balance</span><span class="tag">Cable sizing</span><span class="tag">LV distribution panels</span></div></div>
-      <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>Tools &amp; methods</h3><div class="tags"><span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">LaTeX</span><span class="tag">Technical writing</span><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span></div></div>
+      <div class="sk rv" style="--i:2"><h3><svg viewBox="0 0 24 24"><path d="M14 4l6 6-10 10H4v-6z"/><path d="M12 6l6 6"/></svg>Tools &amp; methods</h3><div class="tags"><span class="tag">ROS 2</span><span class="tag">Gazebo</span><span class="tag">Linux (Ubuntu)</span><span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">LaTeX</span><span class="tag">Technical writing</span><span class="tag">Predictive maintenance</span><span class="tag">Data analysis</span></div></div>
     </div>
 
     <div class="head" style="margin:96px 0 46px"><div><div class="kicker rv">Education</div><h2 class="rv" style="--i:1">Where I study</h2></div></div>
